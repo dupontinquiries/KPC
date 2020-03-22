@@ -1,0 +1,22 @@
+{
+  "pools":[
+   {
+
+   "name": "main",
+   "rolls": 3,
+   "entries": [
+
+      {
+      "type": "item",
+      "name": "minecraft:porkchop",
+      "weight": 20,
+      },
+      {
+      "type": "item",
+      "name": "demo:chestplacer_item",
+      "weight": 10,
+      }
+
+   ]
+ }
+]
