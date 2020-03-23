@@ -65,12 +65,45 @@ public class ItemExcavator extends ItemPickaxe {
 	@Override
     public boolean hitEntity(ItemStack p_77644_1_, EntityLivingBase p_77644_2_, EntityLivingBase p_77644_3_)
     {
-        if (random.nextDouble() < .05){
-        	p_77644_3_.worldObj.spawnEntityInWorld(new EntityItem(p_77644_3_.worldObj, p_77644_3_.posX, p_77644_3_.posY, p_77644_3_.posZ, new ItemStack(Items.diamond, random.nextInt(5) + 1, 0)));
+        if (random.nextDouble() < .01){
+        	p_77644_3_.worldObj.spawnEntityInWorld(new EntityItem(p_77644_3_.worldObj, p_77644_3_.posX, p_77644_3_.posY, p_77644_3_.posZ,
+        			new ItemStack(Item.getItemById( (int) ((random.nextDouble() * 421) + 1) ),
+        			random.nextInt(60) + 1, 0)));
         }
     	p_77644_1_.damageItem(2, p_77644_3_);
         return true;
     }
+	
+	public boolean func_150897_b(Block p_150897_1_)
+    {
+		System.out.println(" func_150897_b");
+        return false;
+    }
+	
+	/*
+	@Override
+    public boolean onEntitySwing(EntityLivingBase elb, ItemStack stack)
+    {
+		EntityPlayer player = (EntityPlayer) elb;
+		World world = player.worldObj;
+        float hardness = block.getBlockHardness(world, x, y, z);
+    	for (Coord coord: surface) {
+    		Block b = world.getBlock(x + coord.getX(), y + coord.getY(), z + coord.getZ());
+    		if (Block.getIdFromBlock(b) != Block.getIdFromBlock(block)) { //b.getBlockHardness(world, x + coord.getX(), y + coord.getY(), z + coord.getZ()) > hardness){
+    			continue;
+    		}
+    		//world.addBlockEvent(x + coord.getX(), y + coord.getY(), z + coord.getZ(), b, EventID.ACTION, 0);
+    		world.setBlock(x + coord.getX(), y + coord.getY(), z + coord.getZ(), Blocks.air);
+    		if (!((EntityPlayer) elb).capabilities.isCreativeMode) {
+    			b.dropBlockAsItem(world, x + coord.getX(), y + coord.getY(), z + coord.getZ(), this.getMetadata(0), 0);
+    			//b.getItemDropped(p_149650_1_, p_149650_2_, p_149650_3_)
+    			//Block.breakBlock(world, x + coord.getX(), y + coord.getY(), z + coord.getZ(), b, b.hasTileEntity(0));  //.dropBlockAsItem(world, x + coord.getX(), y + coord.getY(), z + coord.getZ(), 1, 0);
+    		}
+    	}
+		System.out.println(" onEntitySwing");
+    	return false;
+    }
+	*/
 	
 	@Override
 	public boolean onBlockDestroyed(ItemStack stack, World world, Block block, int x, int y, int z, EntityLivingBase elb)
@@ -91,6 +124,7 @@ public class ItemExcavator extends ItemPickaxe {
     			//Block.breakBlock(world, x + coord.getX(), y + coord.getY(), z + coord.getZ(), b, b.hasTileEntity(0));  //.dropBlockAsItem(world, x + coord.getX(), y + coord.getY(), z + coord.getZ(), 1, 0);
     		}
     	}
+    	System.out.println(" onBlockDestroyed");
         return true;
     }
 }

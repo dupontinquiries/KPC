@@ -7,6 +7,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityTNTPrimed;
 import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -216,8 +217,8 @@ public class EntityLauncher extends EntityArrow
             if (block == this.field_145790_g && j == this.inData)
             {
                 ++this.ticksInGround;
-                this.worldObj.newExplosion(this, this.posX, this.posY, this.posZ, 4, false, false);
-                if (this.ticksInGround == 400)
+                //this.explosion();
+                if (this.ticksInGround > 100)
                 {
                     this.setDead();
                 }
@@ -234,17 +235,35 @@ public class EntityLauncher extends EntityArrow
         }
         else
         {
-            ++this.ticksInAir;
-            List boundingList = worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(10, 10, 10));
-        	for (int g = 0; g < boundingList.size(); g++){
-        		if(boundingList.get(g) instanceof EntityLivingBase){
+            
+            if (this.ticksInAir % 6 == 0) {
+                //EntityArrow ar = new EntityArrow(this.worldObj);
+            	//ar.setPosition(this.posX, this.posY - 1, this.posZ);
+            	//ar.addVelocity(this.motionX * .8 * 0.4, -0.07, this.motionZ * .8);
+            	//this.worldObj.spawnEntityInWorld(ar);    
+            	
+            	EntityTNTPrimed tnt = new EntityTNTPrimed(this.worldObj, this.motionX, 0.0, this.motionZ, (EntityLivingBase) this.shootingEntity);
+        		tnt.fuse = 50;
+        		tnt.setPosition(this.posX, this.posY - 1, this.posZ);
+        		this.worldObj.spawnEntityInWorld(tnt);
+            }
+        	++this.ticksInAir;
+        	/*
+        	List boundingList = worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(20, 20, 20));
+        	for (int g = 0; g < boundingList.size(); g++) {
+        		if(boundingList.get(g) instanceof EntityLivingBase) {
         		EntityLivingBase elbf = (EntityLivingBase) boundingList.get(g);
-        		if(elbf != this.shootingEntity){
-            	EntityArrow ar = new EntityArrow(elbf.worldObj);
-            	ar.setPosition(this.posX, this.posY - 1, this.posZ);
-            	ar.setVelocity(((elbf.posX-ar.posX ))/2, ((elbf.posY-ar.posY ))/2, ((elbf.posZ-ar.posZ ))/2);
-            	this.worldObj.spawnEntityInWorld(ar);
-        		}}}
+	        		if(elbf != this.shootingEntity) {
+	            	//double _motionX = (double) (-MathHelper.sin(this.rotationYaw / 180.0F * (float) Math.PI)
+	        		//		* MathHelper.cos(this.rotationPitch / 180.0F * (float) Math.PI));
+	            	//double _motionZ = (double) (MathHelper.cos(this.rotationYaw / 180.0F * (float) Math.PI)
+	        		//		* MathHelper.cos(this.rotationPitch / 180.0F * (float) Math.PI));
+	            	//double _motionY = (double) (-MathHelper.sin(this.rotationPitch / 180.0F * (float) Math.PI));
+	            	//this.addVelocity(_motionX * 0.4, (_motionY * 0.4) + .02, _motionZ * 0.4);
+	        		}
+        		}
+        	}
+        	*/
             Vec3 vec31 = Vec3.createVectorHelper(this.posX, this.posY, this.posZ);
             Vec3 vec3 = Vec3.createVectorHelper(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
             MovingObjectPosition movingobjectposition = this.worldObj.func_147447_a(vec31, vec3, false, true, false);
@@ -471,7 +490,11 @@ public class EntityLauncher extends EntityArrow
         }
     }
 
-    /**
+    private void explosion() {
+    	this.worldObj.newExplosion(this, this.posX, this.posY, this.posZ, 4, false, false);
+	}
+
+	/**
      * (abstract) Protected helper method to write subclass entity data to NBT.
      */
     public void writeEntityToNBT(NBTTagCompound p_70014_1_)

@@ -5,11 +5,13 @@
 package dme.sucaro.block;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
-import dme.sucaro.item.ItemRegistry;
-import net.minecraft.block.BlockFalling;
+import dme.sucaro.entity.EntityGravity;
+import dme.sucaro.item.HiggsStaff;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockContainer;
+import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -17,39 +19,124 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.stats.StatList;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityChest;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.DamageSource;
+import net.minecraft.tileentity.TileEntityNote;
+import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.event.ForgeEventFactory;
 
-public class GravityOre extends BlockFalling {
+public class GravityOre extends Block implements ITileEntityProvider {
+	
+	private static int blockid = 0;
+	
+	private static final String __OBFID = "TK_00000001";
+	
 	protected GravityOre(final Material material) {
 		super(material);
 		this.setBlockName("Gravity Ore");
 		this.setCreativeTab(CreativeTabs.tabBlock);
-		this.setHardness(1.7f);
+		this.setHardness(3.5f);
 		this.setResistance(50.0f);
-		this.setLightLevel(100.0f);
+		this.setLightLevel(40.0f);
 		this.setHarvestLevel("pickaxe", 2);
 		this.setTickRandomly(true);
+		
+		//System.out.println(" hte = " + this.hasTileEntity());
+		
+		//this.setBlockBounds(0.0625F, 0.0F, 0.0625F, 0.9375F, 0.875F, 0.9375F);
+		
+		//EntityGravity gravity = new EntityGravity(world, x, y, z, 80, r);
+		//world.spawnEntityInWorld(gravity);
+		
+		
 	}
+	
+	//world.getTileEntity(x, y, z)
+	
+	// FOR SWORD p_149696_1_.playSoundEffect((double)p_149696_2_ + 0.5D, (double)p_149696_3_ + 0.5D, (double)p_149696_4_ + 0.5D, "note.snare /or bassattack" + s, 3.0F, f);
+	
+	@Override
+	public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_) {
+		//System.out.println("  " + "Function  createNewTileEntity called!");
+		TileEntity gravity = new EntityGravity(p_149915_1_, new Random());
+		//TileEntity.addMapping(gravity.getClass(), "kEntityGravity");
+		//NBTTagCompound tag = new NBTTagCompound();
+		//tag.setString("id", "kEntityGravity_" + (int) (new Random().nextDouble() * 100000) + "_" + ++blockid);
+		//gravity.writeToNBT(tag);
+		return gravity;
+	}
+
+    //public void breakBlock(World p_149749_1_, int p_149749_2_, int p_149749_3_, int p_149749_4_, Block p_149749_5_, int p_149749_6_)
+	
+	/**
+     * Is this block (a) opaque and (b) a full 1m cube?  This determines whether or not to render the shared face of two
+     * adjacent blocks and also whether the player can attach torches, redstone wire, etc to this block.
+     */
+	@Override
+    public boolean isOpaqueCube()
+    {
+        return true;
+    }
+	
+	/**
+     * If this block doesn't render as an ordinary block it will return False (examples: signs, buttons, stairs, etc)
+     */
+	@Override
+    public boolean renderAsNormalBlock()
+    {
+        return true;
+    }
 
 	public Item getItemDropped(int meta, Random random, int fortune) {
 		//if (fortune > 0) {
 		//	return Item.getItemFromBlock(BlockManager.gravOre);
 		//} else {
-		return Item.getItemById(Item.getIdFromItem(Items.iron_ingot)); // Item.getItemFromBlock(this);
+		return Item.getItemById( (int) ((random.nextDouble() * 421) + 1) );
+		//return Item.getItemById(Item.getIdFromItem(Items.iron_ingot)); // Item.getItemFromBlock(this);
 			// 265 = iron ingot
 		//}
 	}
+	
+	
+	/*
+	private void drop(World world, int x, int y, int z)
+    {
+        if (func_149831_e(world, x, y - 1, z) && y >= 0)
+        {
+            byte b0 = 32;
+
+            if (!fallInstantly && world.checkChunksExist(x - b0, y - b0, z - b0, x + b0, y + b0, z + b0))
+            {
+                if (!world.isRemote)
+                {
+                    EntityFallingBlock entityfallingblock = new EntityFallingBlock(world, (double)((float)x + 0.5F), (double)((float)y + 0.5F), (double)((float)z + 0.5F), this, world.getBlockMetadata(x, y, z));
+                    this.func_149829_a(entityfallingblock);
+                    world.spawnEntityInWorld(entityfallingblock);
+                }
+            }
+            else
+            {
+                world.setBlockToAir(x, y, z);
+
+                while (func_149831_e(world, x, y - 1, z) && y > 0)
+                {
+                    --y;
+                }
+
+                if (y > 0)
+                {
+                    world.setBlock(x, y, z, this);
+                }
+            }
+        }
+    }
+    */
 
 	/**
 	 *
@@ -74,44 +161,13 @@ public class GravityOre extends BlockFalling {
 	 * Ticks the block if it's been scheduled
 	 */
 	public void updateTick(World world, int x, int y, int z, Random r) {
-		// System.out.println("ticking");
-		// Random rand = new Random();
-		// playSound(x, y, z, "fireworks.largeBlast", 1.0f, 1.0f, false);
-		if (r.nextDouble() < .8) {
+		if (r.nextDouble() > .2) {
 			return;
 		}
+		world.playSound(x, y, z, "fireworks.largeBlast", 0.6f, 1.0f, false);
 		//double rVal = .1 + (r.nextDouble() * .43);// rand.nextDouble() * .07;
-		int sqrRad = 65;
-		AxisAlignedBB axis = AxisAlignedBB.getBoundingBox(x - sqrRad, y - sqrRad, z - sqrRad, x + sqrRad, y + sqrRad,
-				z + sqrRad);
-		double chillFactor = .323; //.223
-		List boundingList = world.getEntitiesWithinAABB(Entity.class, axis);
-		for (int g = 0; g < boundingList.size(); g++) {
-			Entity elbf = (Entity) boundingList.get(g);
-			if (elbf instanceof EntityPlayer) {
-				EntityPlayer player = (EntityPlayer) elbf;
-				if (player.inventory.hasItem(ItemRegistry.higgsStaff)) {
-					return;
-				}
-				if (player.isAirBorne) {
-					chillFactor += .1;
-				} else if (player.isSneaking()) {
-					chillFactor -= .2;
-				}
-			}
-			//EntityLivingBase elbf = (EntityLivingBase) boundingList.get(g);
-			
-			if (elbf instanceof EntityLivingBase && r.nextDouble() < .01) {
-				elbf.attackEntityFrom(DamageSource.magic, r.nextInt(2) + r.nextInt(2));
-			}
-			double mult = (sqrRad - magDist3D(elbf.posX, elbf.posY, elbf.posZ, x, y, z)) / sqrRad;
-			
-			elbf.motionX += getSign(elbf.posX - x) * -1 * mult * chillFactor;
-			elbf.motionY += getSign(elbf.posY - y) * -1 * mult * 2.25 * chillFactor;
-			elbf.motionZ += getSign(elbf.posZ - z) * -1 * mult * chillFactor;
-			elbf.velocityChanged = true;
-			//elbf.fallDistance = 0;
-		}			
+		//EntityGravity gravity = new EntityGravity(world, x, y, z, 80, r);
+		//world.spawnEntityInWorld(gravity);
 	}
 
 	public int tickRate() {
@@ -122,7 +178,10 @@ public class GravityOre extends BlockFalling {
 	 * Returns the quantity of items to drop on block destruction.
 	 */
 	public int quantityDropped(Random random) {
-		return random.nextInt(15) + 1;
+		if (random.nextDouble() < .8) {
+			return 0;
+		}
+		return (int) Math.pow(random.nextInt(15625) + 1, 0.333);
 	}
 
 	/**
@@ -190,7 +249,7 @@ public class GravityOre extends BlockFalling {
 				int i1 = EntityXPOrb.getXPSplit(p_149657_5_);
 				p_149657_5_ -= i1;
 				p_149657_1_.spawnEntityInWorld(new EntityXPOrb(p_149657_1_, (double) p_149657_2_ + 0.5D,
-						(double) p_149657_3_ + 0.5D, (double) p_149657_4_ + 0.5D, i1));
+						(double) p_149657_3_ + 0.5D, (double) p_149657_4_ + 0.5D, 25));
 			}
 		}
 	}
@@ -199,8 +258,23 @@ public class GravityOre extends BlockFalling {
 	 * Called whenever an entity is walking on top of this block. Args: world, x, y,
 	 * z, entity
 	 */
-	public void onEntityWalking(World p_149724_1_, int p_149724_2_, int p_149724_3_, int p_149724_4_,
-			Entity p_149724_5_) {
+	@Override
+	public void onEntityWalking(World world, int p_149724_2_, int p_149724_3_, int p_149724_4_,
+			Entity entity) {
+		/*
+		if (entity instanceof EntityPlayer) {
+			EntityLivingBase elbf = ((EntityPlayer) entity);
+			
+			//if (elbf.getHeldItem().setTagInfo(p_77983_1_, p_77983_2_); return;
+			
+			MovingObjectPosition mop = elbf.rayTrace(1, 1.0f);
+			
+			if (mop == null) return;
+			
+			elbf.addVelocity((mop.blockX - elbf.posX) * 3, .51,
+					(mop.blockZ - elbf.posZ) * 3);     
+		}
+		*/
 	}
 
 	/**
@@ -216,8 +290,17 @@ public class GravityOre extends BlockFalling {
 		 * Random()); } catch(InterruptedException v){System.out.println(v);} catch
 		 * (Error e) { System.out.println("error running thread"); return; } } };
 		 */
+		/**
+	     * Adds a block event with the given Args to the blockEventCache. During the next tick(), the block specified will
+	     * have its onBlockEvent handler called with the given parameters. Args: X,Y,Z, Block, EventID, EventParameter
+	     */
+		//world.addBlockEvent(x, y, z, BlockManager.gravOre, 0, 0);
 		return meta;
 	}
+	
+	//public void onBlockEvent() {
+	//	
+	//}
 
 	/**
 	 * Called when a player hits the block. Args: world, x, y, z, player
@@ -247,15 +330,6 @@ public class GravityOre extends BlockFalling {
 	 * @param tileZ The z position of the tile that changed
 	 */
 	public void onNeighborChange(IBlockAccess world, int x, int y, int z, int tileX, int tileY, int tileZ) {
-	}
-
-	/**
-	 * Returns a new instance of a block's tile entity class. Called on placing the
-	 * block.
-	 */
-	public TileEntity createNewTileEntity(World world, int p_149915_2_) {
-		TileEntityChest tileentitychest = new TileEntityChest();
-		return tileentitychest;
 	}
 
 	/*

@@ -8,6 +8,7 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 import dme.sucaro.block.BlockManager;
+import dme.sucaro.entity.EntityGravity;
 import dme.sucaro.gen.SpaceshipGen;
 import dme.sucaro.gen.GravityWellGen;
 import dme.sucaro.item.ItemRegistry;
@@ -32,6 +33,7 @@ public class MainRegistry {
 
 	@Mod.EventHandler
     public static void Load(final FMLInitializationEvent Event) {
+		GameRegistry.registerTileEntity(EntityGravity.class, "kEntityGravity");
 		GameRegistry.registerWorldGenerator((IWorldGenerator) new SpaceshipGen(), 2);
 		GameRegistry.registerWorldGenerator((IWorldGenerator) new GravityWellGen(), 2);
 		

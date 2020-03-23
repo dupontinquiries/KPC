@@ -1,10 +1,8 @@
 package dme.sucaro.block;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
-import dme.sucaro.item.ItemRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
@@ -13,15 +11,13 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.item.EntityXPOrb;
+import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.stats.StatList;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityChest;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.StatCollector;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.IBlockAccess;
@@ -31,6 +27,8 @@ import net.minecraftforge.event.ForgeEventFactory;
 public class SpaceshipBlock extends Block {
 	
 	private String unlocalizedName;
+	
+	private Random random = new Random();
 	
 	protected SpaceshipBlock(final Material material) {
 		super(material);
@@ -94,9 +92,11 @@ public class SpaceshipBlock extends Block {
 		world.playSound(x, y, z, "fireworks.largeBlast", 1.0f, 1.0f, false);
 		world.createExplosion(new EntityLightningBolt(world, x + r.nextInt(sqrRad / 4), y + r.nextInt(sqrRad / 4), z + r.nextInt(sqrRad / 4)),
 				(double) (x + r.nextInt(sqrRad)), (double) (y + r.nextInt(sqrRad)), (double) (z + r.nextInt(sqrRad)), 1.3f, true);
+		/*
 		if (r.nextDouble() < .5) {
 			return;
 		}
+		*/
 	}
 
 	public int tickRate() {
@@ -194,8 +194,27 @@ public class SpaceshipBlock extends Block {
 	/**
 	 * Called when a player hits the block. Args: world, x, y, z, player
 	 */
-	public void onBlockClicked(World p_149699_1_, int p_149699_2_, int p_149699_3_, int p_149699_4_,
-			EntityPlayer p_149699_5_) {
+	public void onBlockClicked(World w, int p_149699_2_, int p_149699_3_, int p_149699_4_,
+			EntityPlayer player) {
+		if (random.nextDouble() > .04) {
+			((EntityLivingBase) player).addPotionEffect(new PotionEffect(Potion.blindness.getId(), 50, 0));
+			((EntityLivingBase) player).addPotionEffect(new PotionEffect(Potion.weakness.getId(), 50, 0));
+			((EntityLivingBase) player).addPotionEffect(new PotionEffect(Potion.digSlowdown.getId(), 50, 0));
+			((EntityLivingBase) player).addPotionEffect(new PotionEffect(Potion.moveSlowdown.getId(), 50, 0));
+			for (int i = 0; i < 20; ++i) {
+				EntityCreeper creeper = new EntityCreeper(w);
+				creeper.posX = player.posX + ((Math.random() - 0.5) * 20);
+				creeper.posY = player.posY + ((Math.random() - 0.5) * 6);
+				creeper.posZ = player.posZ + ((Math.random() - 0.5) * 20);
+				creeper.setInvisible(true);
+				creeper.addPotionEffect(new PotionEffect(Potion.moveSlowdown.getId(), 70, 0));
+				creeper.setAttackTarget(player);
+				if (creeper.getCanSpawnHere()) {
+					w.spawnEntityInWorld(creeper);
+				}
+			}
+		}
+		
 	}
 
 	/**

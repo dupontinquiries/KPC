@@ -19,16 +19,17 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
 import net.minecraft.util.MathHelper;
+import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 
 public class ItemGun extends Item {
-	private static final double pi = 3.1415927f;
-	private static final double kVal = 0.10000000149011612;
 
 	// spinup
 	private double spinupTime = -1;
@@ -53,29 +54,33 @@ public class ItemGun extends Item {
 	private Item ammo;
 	private String particle;
 	private boolean explodes;
-	private boolean exGracity;
-	private double exSize;
+	private int exDuration;
+	private float exSize;
+	
+	// debounce
+	private final int maxDebounce = 2;
+	private int debounce = 0;
 
-	public EnumAction getItemUseAction(final ItemStack p_77661_1_) {
+	public EnumAction getItemUseAction(final ItemStack stack) {
 		if (this.isInUse) return EnumAction.bow;
 		else return EnumAction.none;
 	}
 
-	public ItemStack onEaten(final ItemStack p_77654_1_, final World p_77654_2_, final EntityPlayer p_77654_3_) {
-		return p_77654_1_;
+	public ItemStack onEaten(final ItemStack stack, final World world, final EntityPlayer player) {
+		return stack;
 	}
 
-	public int getMaxItemUseDuration(final ItemStack p_77626_1_) {
-		return 72000;
+	public int getMaxItemUseDuration(final ItemStack s) {
+		return 1;
 	}
 
 	/**
-	 * firerate, damage, recoil, accuracy, power, knockback, number, firetime, ammo,
-	 * particle, explode, exsize, exgravity
+	 * firerate, damage, recoil, kickback, accuracy, power, knockback, number of bullets, firetime, ammo,
+	 * particle name, explodesOnImpact, explosionDuration, explosionSize
 	 */
 	public ItemGun(final int firerate, final double damage, final double recoil, final double kickback,
 			final double accuracy, final float power, final int knockback, final int numberbullet, final int firetime,
-			final Item ammo, final String particle, final Boolean explodes, final Boolean xg, final double xs) {
+			final Item ammo, final String particle, final boolean explodes, final int xd, final float xs) {
 		this.fireRate = firerate;
 		this.damage = damage;
 		this.kickback = kickback;
@@ -89,7 +94,7 @@ public class ItemGun extends Item {
 		this.particle = particle;
 		this.explodes = explodes;
 		this.exSize = xs;
-		this.exGracity = xg;
+		this.exDuration = xd;
 		this.setMaxDamage(this.fireRate + useTicks + 1);
 		this.setCreativeTab(CreativeTabs.tabCombat);
 		this.setMaxStackSize(1);
@@ -100,12 +105,45 @@ public class ItemGun extends Item {
 	}
 	
 	/**
-	 * firerate, damage, recoil, accuracy, power, knockback, number, firetime, magsize,  ammo,
-	 * particle, explode, exsize, exgravity, capacity
+	 * firerate, damage, recoil, kickback, accuracy, power, knockback, number of bullets, firetime, 
+	 * capacity, ammo,
+	 * particle name, explodesOnImpact, explosionDuration, explosionSize
 	 */
-	public ItemGun(int firerate, double damage, double recoil, double kickback,
-			double accuracy, float power, int knockback, int numberbullet, int firetime, int capacity,
-			Item ammo, String particle, Boolean explodes, Boolean xg, double xs) {
+	public ItemGun(final int i, final double damage, final double recoil, final double kickback,
+			final double accuracy, final float power, final int j, final int k,
+			final int l, final int m,
+			final Item ammo, final String particle, final boolean explodes, final int n, final float xs) {
+		this.fireRate = i;
+		this.damage = damage;
+		this.kickback = kickback;
+		this.recoil = recoil;
+		this.accuracy = accuracy;
+		this.power = power;
+		this.knockback = j;
+		this.number = k;
+		this.fireTime = l;
+		this.ammo = ammo;
+		this.particle = particle;
+		this.explodes = explodes;
+		this.exSize = xs;
+		this.exDuration = n;
+		this.setMaxDamage(this.fireRate + useTicks + 1);
+		this.setCreativeTab(CreativeTabs.tabCombat);
+		this.setMaxStackSize(1);
+		this.setNoRepair();
+		this.capacity = m;
+		this.mag = m;
+		// this.func_77664_n();
+	}
+	
+	/**
+	 * firerate, damage, recoil, kickback, accuracy, power, knockback, number of bullets, firetime, 
+	 * capacity, ammo,
+	 * particle name
+	 */
+	public ItemGun(final int firerate, final double damage, final double recoil, final double kickback,
+			final double accuracy, final float power, final int knockback, final int numberbullet, final int firetime,
+			final int capacity, final Item ammo, final String particle) {
 		this.fireRate = firerate;
 		this.damage = damage;
 		this.kickback = kickback;
@@ -117,9 +155,9 @@ public class ItemGun extends Item {
 		this.fireTime = firetime;
 		this.ammo = ammo;
 		this.particle = particle;
-		this.explodes = explodes;
-		this.exSize = xs;
-		this.exGracity = xg;
+		this.explodes = false;
+		this.exSize = 0;
+		this.exDuration = 0;
 		this.setMaxDamage(this.fireRate + useTicks + 1);
 		this.setCreativeTab(CreativeTabs.tabCombat);
 		this.setMaxStackSize(1);
@@ -135,11 +173,11 @@ public class ItemGun extends Item {
 	 */
 	public ItemGun(final int sut, final int suf, final int firerate, final double damage, final double recoil,
 			final double kickback, final double accuracy, final float power, final int knockback,
-			final int numberbullet, final int firetime, final Item ammo, final String particle, final Boolean explodes,
-			final Boolean xg, final double xs) {
+			final int numberbullet, final int firetime, final int capacity,
+			final Item ammo, final String particle, final boolean explodes, final int xd, final float xs) {
 		this.spinupTime = sut;
 		this.spinupFireRate = suf;
-		this.spinupDecrement = (int) ((this.fireRate - this.spinupFireRate) / this.spinupTime);
+		this.spinupDecrement = (byte) ((this.fireRate - this.spinupFireRate) / this.spinupTime);
 		this.fireRate = firerate;
 		this.damage = damage;
 		this.kickback = kickback;
@@ -153,14 +191,18 @@ public class ItemGun extends Item {
 		this.particle = particle;
 		this.explodes = explodes;
 		this.exSize = xs;
-		this.exGracity = xg;
+		this.exDuration = xd;
 		this.setMaxDamage(this.fireRate + useTicks + 1);
 		this.setCreativeTab(CreativeTabs.tabCombat);
 		this.setMaxStackSize(1);
 		this.setNoRepair();
 		// this.func_77664_n();
 	}
-
+	
+	//private void setToolTip() {
+	//	
+	//}
+	
 	/**
 	 * Queries the percentage of the 'Durability' bar that should be drawn.
 	 *
@@ -175,9 +217,18 @@ public class ItemGun extends Item {
 
 	public void onUpdate(final ItemStack stack, final World world, final Entity entity, final int p_77663_4_,
 			final boolean p_77663_5_) {
+		if (debounce != 0) {
+			--debounce;
+		} else {
+			debounce = maxDebounce;
+		}
 		EntityPlayer player = (EntityPlayer) entity;
+		//if (player.getHeldItem() == stack) {
+		//	this.isInUse = false;
+		//}
 		if (this.mag == -1) {
 			//do nothing
+			//this.isInUse = false;
 		} else {
 			if (this.mag < -2) {
 				this.mag++;
@@ -189,10 +240,10 @@ public class ItemGun extends Item {
 			}
 		}
 		if (this.isInUse && this.mag > 0) {
-			if (player.getItemInUse() == stack) {
+			if (player.getHeldItem() != stack) {
 				this.onPlayerStoppedUsing(stack, world, player, stack.stackSize);
 			} else {
-				player.setItemInUse(stack, this.getMaxItemUseDuration(stack));
+				//player.setItemInUse(stack, this.getMaxItemUseDuration(stack));
 			}
 		} else {
 			//do nothing
@@ -206,9 +257,12 @@ public class ItemGun extends Item {
 	/**
 	 * allows items to add custom lines of information to the mouseover description
 	 */
+	@SuppressWarnings("unchecked")
 	@SideOnly(Side.CLIENT)
-	public void addInformation(final ItemStack par1ItemStack, final EntityPlayer par2EntityPlayer, final List par3List,
-			final boolean par4) {
+	public void addInformation(ItemStack itemStack, EntityPlayer entityPlayer, List textList, boolean useAdvancedItemTooltips) {
+		textList.add("Damage: " + this.damage);
+		textList.add("Fire Rate: " + this.fireRate);
+		textList.add("Ammo Item: " + Item.itemRegistry.getNameForObject(this.ammo));
 	}
 
 	public void registerIcons(final IIconRegister p_94581_1_) {
@@ -218,6 +272,8 @@ public class ItemGun extends Item {
 	public ItemStack onItemRightClick(final ItemStack stack, final World w, final EntityPlayer player) {
 		// p.worldObj.playSoundAtEntity(p, "random.bow", 1.0F, 1.0F);
 		// p.worldObj.getLightBrightness(p_72801_1_, p_72801_2_, p_72801_3_)
+		
+		
 		if (stack.getItemDamage() <= this.useTicks) {
 			this.isInUse = true;
 			player.setItemInUse(stack, 1000);
@@ -232,6 +288,7 @@ public class ItemGun extends Item {
 	 * entityplayer, itemInUseCount
 	 */
 	public void onPlayerStoppedUsing(ItemStack s, World w, EntityPlayer p, int o) {
+		
 		if (this.spinupFireRate != -1) {
 			this.setMaxDamage(this.fireRate + useTicks + 1);
 		}
@@ -253,20 +310,30 @@ public class ItemGun extends Item {
 	}
 
 	public void onUsingTick(final ItemStack stack, final EntityPlayer player, final int count) {
+		
+		//if (this.mag < 0) { //seems to work
+		//	return;
+		//}
 		System.out.println(this.mag);
 		if (!this.isInUse) {
 			return;
 		}
 		final Random rand = new Random();
-		final BulletEvent event = new BulletEvent(player, stack, count, this.ammo);
-		MinecraftForge.EVENT_BUS.post((Event) event);
-		if (event.isCanceled()) {
-			return;
-		}
+		
 		if (stack.getItemDamage() <= this.useTicks) {
-			if (!this.explodes) {
+			{
 				// loop to iterate all bullets
+				if (!this.isInUse) {
+					this.isInUse = false;
+					player.stopUsingItem();
+					return;
+				}
 				for (int c = 0; c < this.number; c++) {
+					//final BulletEvent event = new BulletEvent(player, stack, count, this.ammo);
+					//MinecraftForge.EVENT_BUS.post((Event) event);
+					//if (event.isCanceled()) {
+					//	return;
+					//}
 					final boolean flag = player.capabilities.isCreativeMode
 							|| EnchantmentHelper.getEnchantmentLevel(Enchantment.infinity.effectId, stack) > 0
 							|| this.ammo == null;
@@ -274,16 +341,21 @@ public class ItemGun extends Item {
 						//magazine
 						if (this.mag == 0) {
 							this.reload();
+							this.isInUse = false;
+							player.stopUsingItem();
 							return;
-						} else if (this.mag != -1) {
+						} else if (this.mag > -1) {
 							this.mag--;
 						}
-						EntityBullet entityarrow = new EntityBullet(player.worldObj, (EntityLivingBase) player,
-								this.power, this.ammo);
+						EntityBullet entityarrow = new EntityBullet(player.worldObj, 
+							(EntityLivingBase) player, this.power, this.ammo);
 						entityarrow.setDamage(this.damage);
 						entityarrow.setKnockbackStrength(this.knockback);
 						entityarrow.setIsCritical(true);
 						entityarrow.setFire(this.fireTime);
+						entityarrow.explodes = this.explodes;
+						entityarrow.exSize = this.exSize;
+						entityarrow.exDuration = this.exDuration;
 						if (flag) {
 							entityarrow.canBePickedUp = 2;
 						} else {
@@ -292,28 +364,20 @@ public class ItemGun extends Item {
 						final double f1 = (rand.nextDouble() - 0.5) * this.accuracy;
 						final double f2 = (rand.nextDouble() - 0.5) * this.accuracy;
 						final double f3 = (rand.nextDouble() - 0.5) * this.accuracy;
-						// entityarrow.setVelocity(entityarrow.motionX*this.Power,
-						// entityarrow.motionY*this.Power, entityarrow.motionZ*this.Power);
+						//entityarrow.setVelocity(entityarrow.motionX*this.power, entityarrow.motionY*this.power, entityarrow.motionZ*this.power);
 						entityarrow.addVelocity(f1, f2, f3);
 						stack.setItemDamage(this.fireRate + useTicks);
 						player.worldObj.spawnEntityInWorld((Entity) entityarrow);
-						//player.worldObj.spawnParticle(this.particle, entityarrow.posX, entityarrow.posY,
-						//		entityarrow.posZ, entityarrow.motionX, entityarrow.motionY, entityarrow.motionZ);
-						player.worldObj.spawnParticle(this.particle, entityarrow.posX, entityarrow.posY,
-								entityarrow.posZ, 0, .7, 0);
+						//Vec3 lookvec = player.getLookVec();
+						//entityarrow.setThrowableHeading(lookvec.xCoord, lookvec.yCoord, lookvec.zCoord, 1.0f, 1.0f);
 						player.worldObj.playSoundEffect(player.posX, player.posY, player.posZ, "fireworks.largeBlast", 1.0f, 1.0f);
-						// player.addVelocity(-(-MathHelper.sqrt_double(player.rotationYaw / 180.0f *
-						// pi) * MathHelper.sqrt_double(player.rotationPitch / 180.0f * pi)) *
-						// this.Recoil, -(-MathHelper.sqrt_double(player.rotationPitch / 180.0f * pi)) *
-						// this.Recoil, -(MathHelper.sqrt_double(player.rotationYaw / 180.0f * pi) *
-						// MathHelper.sqrt_double(player.rotationPitch / 180.0f * pi)) * this.Recoil);
-						// -(-MathHelper.sqrt_double(player.rotationYaw / 180.0f * pi) *
-						// MathHelper.sqrt_double(player.rotationPitch / 180.0f * pi)) * this.Recoil,
-						// -(-MathHelper.sqrt_double(player.rotationPitch / 180.0f * pi)) * this.Recoil,
-						// -(MathHelper.sqrt_double(player.rotationYaw / 180.0f * pi) *
-						// MathHelper.sqrt_double(player.rotationPitch / 180.0f * pi)) * this.Recoil
+						//gunsmoke
+						//player.worldObj.spawnParticle(this.particle, entityarrow.posX, entityarrow.posY,
+						//		entityarrow.posZ, 0, 1.3, 0);
 					}
 				}
+				this.isInUse = false;
+				//player.stopUsingItem();
 			}
 			// kickback
 			if (mag3D(player.motionX, player.motionY, player.motionZ) > .3) {
@@ -335,7 +399,7 @@ public class ItemGun extends Item {
 
 	private void reload() {
 		// TODO Auto-generated method stub
-		this.mag = -20;
+		this.mag = -40;
 	}
 
 	public void setSpinupTime(float t) {

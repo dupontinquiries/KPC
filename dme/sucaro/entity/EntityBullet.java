@@ -30,6 +30,7 @@ import net.minecraft.world.World;
 import net.minecraft.item.Item;
 import net.minecraft.block.Block;
 import net.minecraft.entity.IProjectile;
+import net.minecraft.entity.item.EntityTNTPrimed;
 import net.minecraft.entity.Entity;
 
 public class EntityBullet extends Entity implements IProjectile {
@@ -51,10 +52,16 @@ public class EntityBullet extends Entity implements IProjectile {
 	private double damage;
 	private Item ammo;
 	private int knockbackStrength;
+	public boolean explodes;
+	public float exSize;
+	public int exDuration;
 	private static final String __OBFID = "CL_00001715";
 
 	public EntityBullet(final World p_i1753_1_) {
 		super(p_i1753_1_);
+		this.explodes = false;
+		this.exDuration = -1;
+		this.exSize = 0.0f;
 		this.field_145791_d = -1;
 		this.field_145792_e = -1;
 		this.field_145789_f = -1;
@@ -66,6 +73,9 @@ public class EntityBullet extends Entity implements IProjectile {
 	public EntityBullet(final World p_i1754_1_, final double p_i1754_2_, final double p_i1754_4_,
 			final double p_i1754_6_) {
 		super(p_i1754_1_);
+		this.explodes = false;
+		this.exDuration = -1;
+		this.exSize = 0.0f;
 		this.field_145791_d = -1;
 		this.field_145792_e = -1;
 		this.field_145789_f = -1;
@@ -79,6 +89,9 @@ public class EntityBullet extends Entity implements IProjectile {
 	public EntityBullet(final World w, final EntityLivingBase source, final EntityLivingBase target,
 			final float p_i1755_4_, final float p_i1755_5_) {
 		super(w);
+		this.explodes = false;
+		this.exDuration = -1;
+		this.exSize = 0.0f;
 		this.field_145791_d = -1;
 		this.field_145792_e = -1;
 		this.field_145789_f = -1;
@@ -105,7 +118,7 @@ public class EntityBullet extends Entity implements IProjectile {
 		}
 	}
 
-	public EntityBullet(final World w, final EntityLivingBase elb, final float p_i1756_3_, final Item Ammo) {
+	public EntityBullet(World w, EntityLivingBase elb, float p_i1756_3_, Item Ammo) {
 		super(w);
 		this.field_145791_d = -1;
 		this.field_145792_e = -1;
@@ -114,6 +127,9 @@ public class EntityBullet extends Entity implements IProjectile {
 		this.renderDistanceWeight = 10.0;
 		this.shootingEntity = (Entity) elb;
 		this.ammo = Ammo;
+		this.explodes = false;
+		this.exDuration = -1;
+		this.exSize = 0.0f;
 		if (elb instanceof EntityPlayer) {
 			this.canBePickedUp = 1;
 		}
@@ -205,6 +221,16 @@ public class EntityBullet extends Entity implements IProjectile {
 	public boolean canBeCollidedWith() {
 		return false;
 	}
+	
+	/**
+	 * creates an explosion
+	 */
+	private void explosion() {
+		//EntityTNTPrimed tnt = new EntityTNTPrimed(this.worldObj, this.motionX, 0.0, this.motionZ, (EntityLivingBase) this.shootingEntity);
+		//tnt.fuse = 00;
+		//this.worldObj.spawnEntityInWorld(tnt);
+    	this.worldObj.newExplosion(this, this.posX, this.posY, this.posZ, this.exSize, false, false);
+	}
 
 	/**
 	 * Called to update the entity's position/logic.
@@ -212,7 +238,7 @@ public class EntityBullet extends Entity implements IProjectile {
 	public void onUpdate() {
 		super.onUpdate();
 
-		if (this.ticksInAir % 2 == 0) {
+		if (this.ticksInAir % 3 == 0) {
 			if (this.damage > 1) {
 				this.damage -= 1;
 			}
@@ -250,8 +276,11 @@ public class EntityBullet extends Entity implements IProjectile {
 			if (block == this.field_145790_g && j == this.inData) {
 				++this.ticksInGround;
 
-				if (this.ticksInGround == 2) // 1200
+				if (this.ticksInGround > this.exDuration || (this.ticksInGround == 2 && this.exDuration == -1)) // 1200
 				{
+					//if (this.explodes) {
+					//	this.explosion();
+					//}
 					this.setDead();
 				}
 			} else {
@@ -265,9 +294,10 @@ public class EntityBullet extends Entity implements IProjectile {
 		} else {
 			++this.ticksInAir;
 			// simulate bullet drop
-			if (this.ticksInAir > 20) {
-				this.addVelocity(0, -0.00005, 0);
-			}
+			//if (this.ticksInAir > 20) {
+			//	this.addVelocity(0, -0.00005, 0);
+			//}
+			this.addVelocity(0, 0.045, 0);
 			Vec3 vec31 = Vec3.createVectorHelper(this.posX, this.posY, this.posZ);
 			Vec3 vec3 = Vec3.createVectorHelper(this.posX + this.motionX, this.posY + this.motionY,
 					this.posZ + this.motionZ);
@@ -351,7 +381,7 @@ public class EntityBullet extends Entity implements IProjectile {
 							EntityLivingBase entitylivingbase = (EntityLivingBase) movingobjectposition.entityHit;
 
 							if (!this.worldObj.isRemote) {
-								entitylivingbase.setArrowCountInEntity(entitylivingbase.getArrowCountInEntity() + 1);
+								//entitylivingbase.setArrowCountInEntity(entitylivingbase.getArrowCountInEntity() + 1);
 							}
 
 							if (this.knockbackStrength > 0) {
@@ -379,19 +409,19 @@ public class EntityBullet extends Entity implements IProjectile {
 										.sendPacket(new S2BPacketChangeGameState(6, 0.0F));
 							}
 						}
-
+						// play gun sound
 						this.playSound("fireworks.largeBlast", 1.0F, 1.2F / (this.rand.nextFloat() * 0.2F + 0.9F)); // random.bowhit
 
 						if (!(movingobjectposition.entityHit instanceof EntityEnderman)) {
 							this.setDead();
 						}
 					} else {
-						this.motionX *= -0.10000000149011612D;
-						this.motionY *= -0.10000000149011612D;
-						this.motionZ *= -0.10000000149011612D;
-						this.rotationYaw += 180.0F;
-						this.prevRotationYaw += 180.0F;
-						this.ticksInAir = 0;
+						//this.motionX *= -0.10000000149011612D;
+						//this.motionY *= -0.10000000149011612D;
+						//this.motionZ *= -0.10000000149011612D;
+						//this.rotationYaw += 180.0F;
+						//this.prevRotationYaw += 180.0F;
+						//this.ticksInAir = 0;
 					}
 				} else {
 					this.field_145791_d = movingobjectposition.blockX;
@@ -479,6 +509,13 @@ public class EntityBullet extends Entity implements IProjectile {
 			this.motionY -= (double) f1;
 			this.setPosition(this.posX, this.posY, this.posZ);
 			this.func_145775_I();
+			if (this.explodes) {
+				if (this.ticksInAir > (int) (11.0 / 4.0 * this.exSize)) {
+					if (this.ticksInAir < 55 && this.ticksInAir % 10 == 0) {
+						this.explosion();
+					}
+				}
+			}
 		}
 	}
 
@@ -529,9 +566,9 @@ public class EntityBullet extends Entity implements IProjectile {
 	protected void onImpact(MovingObjectPosition mop) {
 		if (mop.entityHit != null) {
 			if (mop.entityHit.getClass() == EntityBullet.class) {
-
+				//this.velocityChanged = true;
 			}
-			if (mop.entityHit == this.shootingEntity) {
+			else if (mop.entityHit == this.shootingEntity) {
 				this.setDamage(0);
 				if (!this.worldObj.isRemote) {
 					this.setDead();
@@ -540,11 +577,93 @@ public class EntityBullet extends Entity implements IProjectile {
 				this.applyEntityCollision(mop.entityHit);
 				mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.shootingEntity),
 						(float) this.damage);
+				
 			}
 		} else if (!this.worldObj.isRemote) {
 			this.setDead();
 		}
 	}
+	
+	/*
+	// code to move towards nearest player
+    public void onUpdate()
+    {
+        super.onUpdate();
+
+        if (this.field_70532_c > 0)
+        {
+            --this.field_70532_c;
+        }
+
+        this.prevPosX = this.posX;
+        this.prevPosY = this.posY;
+        this.prevPosZ = this.posZ;
+        this.motionY -= 0.029999999329447746D;
+
+        if (this.worldObj.getBlock(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.posY), MathHelper.floor_double(this.posZ)).getMaterial() == Material.lava)
+        {
+            this.motionY = 0.20000000298023224D;
+            this.motionX = (double)((this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F);
+            this.motionZ = (double)((this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F);
+            this.playSound("random.fizz", 0.4F, 2.0F + this.rand.nextFloat() * 0.4F);
+        }
+
+        this.func_145771_j(this.posX, (this.boundingBox.minY + this.boundingBox.maxY) / 2.0D, this.posZ);
+        double d0 = 8.0D;
+
+        if (this.xpTargetColor < this.xpColor - 20 + this.getEntityId() % 100)
+        {
+            if (this.closestPlayer == null || this.closestPlayer.getDistanceSqToEntity(this) > d0 * d0)
+            {
+                this.closestPlayer = this.worldObj.getClosestPlayerToEntity(this, d0);
+            }
+
+            this.xpTargetColor = this.xpColor;
+        }
+
+        if (this.closestPlayer != null)
+        {
+            double d1 = (this.closestPlayer.posX - this.posX) / d0;
+            double d2 = (this.closestPlayer.posY + (double)this.closestPlayer.getEyeHeight() - this.posY) / d0;
+            double d3 = (this.closestPlayer.posZ - this.posZ) / d0;
+            double d4 = Math.sqrt(d1 * d1 + d2 * d2 + d3 * d3);
+            double d5 = 1.0D - d4;
+
+            if (d5 > 0.0D)
+            {
+                d5 *= d5;
+                this.motionX += d1 / d4 * d5 * 0.1D;
+                this.motionY += d2 / d4 * d5 * 0.1D;
+                this.motionZ += d3 / d4 * d5 * 0.1D;
+            }
+        }
+
+        this.moveEntity(this.motionX, this.motionY, this.motionZ);
+        float f = 0.98F;
+
+        if (this.onGround)
+        {
+            f = this.worldObj.getBlock(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.boundingBox.minY) - 1, MathHelper.floor_double(this.posZ)).slipperiness * 0.98F;
+        }
+
+        this.motionX *= (double)f;
+        this.motionY *= 0.9800000190734863D;
+        this.motionZ *= (double)f;
+
+        if (this.onGround)
+        {
+            this.motionY *= -0.8999999761581421D;
+        }
+
+        ++this.xpColor;
+        ++this.xpOrbAge;
+
+        if (this.xpOrbAge >= 6000)
+        {
+            this.setDead();
+        }
+    }
+    */
 
 	/**
 	 * Applies a velocity to each of the entities pushing them away from each other.
@@ -573,7 +692,7 @@ public class EntityBullet extends Entity implements IProjectile {
 				d1 *= 0.05000000074505806D;
 				d0 *= (double) (1.0F - this.entityCollisionReduction);
 				d1 *= (double) (1.0F - this.entityCollisionReduction);
-				this.addVelocity(-d0, 0.0D, -d1);
+				//this.addVelocity(-d0, 0.0D, -d1);
 				entity.addVelocity(d0, 0.0D, d1);
 			}
 		}
@@ -626,7 +745,7 @@ public class EntityBullet extends Entity implements IProjectile {
 	 * If returns false, the item will not inflict any damage against entities.
 	 */
 	public boolean canAttackWithItem() {
-		return false;
+		return true;
 	}
 
 	/**

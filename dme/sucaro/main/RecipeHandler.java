@@ -15,6 +15,7 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 
 public class RecipeHandler {
 	public static void registerRecipes() {
+		/*
 		GameRegistry.addRecipe((IRecipe) new ShapedOreRecipe(new ItemStack(ItemRegistry.parkour),
 				new Object[] { " G ", " B ", " B ", 'B', Items.blaze_rod, 'I', Blocks.iron_block, 'N',
 						Blocks.netherrack, 'G', BlockManager.gravOre }));
@@ -34,5 +35,6 @@ public class RecipeHandler {
 		GameRegistry.addRecipe((IRecipe) new ShapedOreRecipe(new ItemStack(ItemRegistry.higgsStaff),
 				new Object[] { " G ", " B ", " G ", 'B', Items.blaze_rod, 'I', Blocks.iron_block, 'N',
 						Blocks.netherrack, 'G', BlockManager.gravOre }));
+		*/
 	}
 }

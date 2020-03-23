@@ -18,13 +18,17 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntityChest;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.Vector;
+
 import cpw.mods.fml.common.IWorldGenerator;
 
 public class GravityWellGen implements IWorldGenerator {
@@ -111,7 +115,6 @@ public class GravityWellGen implements IWorldGenerator {
 				w--;
 				while (h > -1) {
 					h--;
-					//System.out.println("lwh = " + l + ", " + w + ", " + h);
 					final Coord tmp = new Coord(l, h, w);
 					if (magDist3D(0, 0, 0, tmp.x, tmp.y, tmp.z) <= w) {
 						list.add(tmp);
@@ -121,8 +124,55 @@ public class GravityWellGen implements IWorldGenerator {
 			}
 			w = b;
 		}
-		// System.out.println("array size = " + list.size());
 		return list;
+	}
+	
+	/* pos is a Vector containing the x,y,z of the center block of the sphere
+	 * block is the block to make the sphere out of
+	 * radius is the radius of the sphere
+	 * filled is whether the sphere is solid or hollow
+	 */
+	  public void makeSphere(World world, int _x, int _y, int _z, double radius, boolean filled) {
+
+	    radius += 0.5D; //I think they do this so the radius is measured from the center of the block
+	    double radiusSq = radius * radius; //Square of the radius, so we don't need to use square roots for distance calcs
+	    double radius1Sq = (radius - 1.0D) * (radius - 1.0D); //Square of the radius of a circle 1 block smaller, for making a hollow sphere
+
+	    int ceilRadius = (int)Math.ceil(radius); //Round the radius up
+	    //Loop through x,y,z up to the rounded radius
+	    for (int x = 0; x <= ceilRadius; x++) {
+		  for (int y = 0; y <= ceilRadius; y++) {
+		    for (int z = 0; z <= ceilRadius; z++) {
+			  double dSq = lengthSq(x, y, z); //Gets the square of the distance from the center (x*x + y*y + z*z). Again using squares so we don't need to square root
+
+	          //If the distance to this point is greater than the radius, skip it (this is what makes this whole thing make a sphere, instead of a cube)
+			  if (dSq > radiusSq) {
+			    continue;
+			  }
+			  //If sphere should be hollow, and the point is within the sphere, but also within the 1-smaller sphere, skip it
+			  if ((!filled) && (
+			    (dSq < radius1Sq) || ((lengthSq(x + 1, y, z) <= radiusSq) && (lengthSq(x, y + 1, z) <= radiusSq) && (lengthSq(x, y, z + 1) <= radiusSq))))
+			  {
+			    continue;
+			  }
+	          
+	          //Place the block in every +/- direction around the center
+			  world.setBlock(x + _x, y + _y, z + _z, BlockManager.gravOre);
+			  world.setBlock(-x + _x, y + _y, z + _z, BlockManager.gravOre);
+			  world.setBlock(x + _x, -y + _y, z + _z, BlockManager.gravOre);
+			  world.setBlock(x + _x, y + _y, -z + _z, BlockManager.gravOre);
+			  
+			  world.setBlock(-x + _x, -y + _y, z + _z, BlockManager.gravOre);
+			  world.setBlock(x + _x, -y + _y, -z + _z, BlockManager.gravOre);
+			  world.setBlock(-x + _x, y + _y, -z + _z, BlockManager.gravOre);
+			  world.setBlock(-x + _x, -y + _y, -z + _z, BlockManager.gravOre);
+		    }
+		  }
+	    }
+	  }
+	
+	private double lengthSq(int x, int y, int z) {
+		return x*x + y*y + z*z;
 	}
 	
 	private ArrayList<Coord> basic3D(int l, int h, int w) {
@@ -136,19 +186,38 @@ public class GravityWellGen implements IWorldGenerator {
 
 	private void generateSurface(final World world, final Random random, final int i, final int j) {
 		double decider = random.nextDouble();
-		if (decider < .1) {
-			int num = 2; // 2;
-			int ceil = 340; // 240;
+		if (decider < .006) {
+			int num = random.nextInt(44) + 1; // 2;
+			int ceil = 250; // 240;
 			for (int k = 0; k < num; ++k) {
 				if (random.nextDouble() < 0.075) { // .05
-					final int fX = i + random.nextInt(16);
-					final int fY = random.nextInt(ceil);
-					final int fZ = j + random.nextInt(16);
+					int fX = i + random.nextInt(16);
+					int fY = random.nextInt(ceil);
+					int fZ = j + random.nextInt(16);
 					generateSingle(world, random, fX, fY, fZ);
+					//System.out.println("  ======\n  New Single @ " + fX + ", " + fY + ", " + fZ + "\n  ======");
 				}
 			}
-		} else if (decider < .12) {
-			int num = 17;
+		}
+		// || decider < .003
+		else if (decider < .031) {
+			int num = random.nextInt(4) + 1;
+			int ceil = 250;
+			MinecraftServer.getServer().getConfigurationManager().sendChatMsg(new ChatComponentText("Gravity feels a bit strange around here..."));
+			for (int k = 0; k < num; ++k) {
+				if (random.nextDouble() < 0.05) {
+					int radius = random.nextInt( 3 * ( 5 - num ) ) + 2;
+					int fX = i + random.nextInt(16);
+					int fY = random.nextInt(340);
+					int fZ = j + random.nextInt(16);
+					makeSphere(world, fX, fY, fZ, radius, false);
+					//System.out.println("  ======\n  New Sphere @ " + fX + ", " + fY + ", " + fZ + "\n  ======");
+				}
+			}
+		}
+		/*
+		else if (decider < .04) {
+			int num = 27;
 			int ceil = 340;
 			for (int k = 0; k < num; ++k) {
 				if (random.nextDouble() < 0.05) {
@@ -162,6 +231,7 @@ public class GravityWellGen implements IWorldGenerator {
 		else {
 			//do nothing
 		}
+		*/
 	}
 
 	private void generateNether(final World world, final Random random, final int i, final int j) {
@@ -182,8 +252,11 @@ public class GravityWellGen implements IWorldGenerator {
 			return false;
 		} else {
 			y++;
-			int lift = 10;
+			int lift = random.nextInt(5) + 5;
 			int thickness = random.nextInt(3) + random.nextInt(3) + 1;
+			if (random.nextDouble() < .03) {
+				thickness = random.nextInt(17) + random.nextInt(17) + 14;
+			}
 			ArrayList<Coord> surface = this.gen3DPyramidUpsideDown(thickness, random.nextInt(2) + random.nextInt(2) + 3, thickness); //thickness, random.nextInt(2) + random.nextInt(2) + 3, thickness
 			for (Coord coord : surface) {
 				if (!world.isAirBlock(x + coord.getX(), y + coord.getY() + lift, z + coord.getZ())) {
