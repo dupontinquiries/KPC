@@ -1,0 +1,18 @@
+{
+    "type": "minecraft:crafting_shapeless",
+
+    "ingredients":
+    [
+
+    {
+      "item": "kitchenparkourcombat:ns_artifact"
+    }
+
+    ],
+
+    "result":
+    {
+        "item": "kitchenparkourcombat:charged_ns_artifact",
+        "count": 1
+    }
+}

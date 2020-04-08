@@ -1,0 +1,29 @@
+{
+    "type": "minecraft:crafting_shaped",
+
+    "pattern":
+    [
+        "OOO",
+        "ODO",
+        "OOO"
+    ],
+
+    "key":
+    {
+        "O":
+        {
+            "item": "minecraft:obsidian"
+        },
+
+        "D":
+        {
+            "item": "kitchenparkourcombat:charged_ruby"
+        }
+    },
+
+    "result":
+    {
+        "item": "kitchenparkourcombat:gravity_ore",
+        "count": 1
+    }
+}

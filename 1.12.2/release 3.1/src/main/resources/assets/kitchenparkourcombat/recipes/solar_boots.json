@@ -1,0 +1,24 @@
+{
+    "type": "minecraft:crafting_shaped",
+
+    "pattern":
+    [
+        "   ",
+        "O O",
+        "O O"
+    ],
+
+    "key":
+    {
+        "O":
+        {
+            "item": "kitchenparkourcombat:charged_ruby"
+        }
+    },
+
+    "result":
+    {
+        "item": "kitchenparkourcombat:solar_boots",
+        "count": 1
+    }
+}

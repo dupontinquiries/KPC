@@ -1,0 +1,21 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "D",
+        "D",
+        "S"
+    ],
+    "key": {
+        "S": {
+            "item": "minecraft:stick"
+        },
+        "D": {
+            "item": "kitchenparkourcombat:dragon_shell"
+        }
+    },
+    "result":
+    {
+        "item": "kitchenparkourcombat:dimensional_artifact",
+        "count": 1
+    }
+}

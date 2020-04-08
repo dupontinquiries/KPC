@@ -1,0 +1,6 @@
+{
+   "parent": "item/handheld",
+   "textures": {
+       "layer0": "kitchenparkourcombat:items/lifeless_end_stone_blade"
+   }
+}

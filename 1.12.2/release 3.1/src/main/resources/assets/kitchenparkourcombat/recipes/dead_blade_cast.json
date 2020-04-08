@@ -1,0 +1,21 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "EEE",
+        "EDE",
+        "EEE"
+    ],
+    "key": {
+        "D": {
+            "item": "kitchenparkourcombat:dead_blade"
+        },
+        "E": {
+            "item": "kitchenparkourcombat:ruby"
+        }
+    },
+    "result":
+    {
+        "item": "kitchenparkourcombat:dead_blade_cast",
+        "count": 1
+    }
+}

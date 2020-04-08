@@ -1,0 +1,29 @@
+{
+    "type": "minecraft:crafting_shaped",
+
+    "pattern":
+    [
+        "OO ",
+        "OD ",
+        " D "
+    ],
+
+    "key":
+    {
+        "O":
+        {
+            "item": "kitchenparkourcombat:ruby"
+        },
+
+        "D":
+        {
+            "item": "minecraft:stick"
+        }
+    },
+
+    "result":
+    {
+        "item": "kitchenparkourcombat:ruby_axe",
+        "count": 1
+    }
+}

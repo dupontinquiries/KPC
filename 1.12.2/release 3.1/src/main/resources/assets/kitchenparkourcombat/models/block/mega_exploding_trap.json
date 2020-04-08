@@ -1,0 +1,6 @@
+{
+   "parent": "block/cube_all",
+   "textures": {
+       "all": "kitchenparkourcombat:blocks/mega_exploding_trap"
+   }
+}

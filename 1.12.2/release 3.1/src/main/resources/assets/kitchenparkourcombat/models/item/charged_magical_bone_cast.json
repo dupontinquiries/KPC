@@ -1,0 +1,6 @@
+{
+   "parent": "item/handheld",
+   "textures": {
+       "layer0": "kitchenparkourcombat:items/magical_bone_cast"
+   }
+}

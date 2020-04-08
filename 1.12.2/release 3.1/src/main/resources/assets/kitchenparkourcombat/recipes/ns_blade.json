@@ -1,0 +1,29 @@
+{
+    "type": "minecraft:crafting_shaped",
+
+    "pattern":
+    [
+        " O ",
+        " O ",
+        " D "
+    ],
+
+    "key":
+    {
+        "O":
+        {
+            "item": "kitchenparkourcombat:charged_ns_artifact"
+        },
+
+        "D":
+        {
+            "item": "minecraft:stick"
+        }
+    },
+
+    "result":
+    {
+        "item": "kitchenparkourcombat:ns_blade",
+        "count": 1
+    }
+}

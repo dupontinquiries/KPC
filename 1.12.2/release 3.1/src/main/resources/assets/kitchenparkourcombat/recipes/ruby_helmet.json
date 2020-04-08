@@ -1,0 +1,24 @@
+{
+    "type": "minecraft:crafting_shaped",
+
+    "pattern":
+    [
+        "OOO",
+        "O O",
+        "   "
+    ],
+
+    "key":
+    {
+        "O":
+        {
+            "item": "kitchenparkourcombat:ruby"
+        }
+    },
+
+    "result":
+    {
+        "item": "kitchenparkourcombat:ruby_helmet",
+        "count": 1
+    }
+}

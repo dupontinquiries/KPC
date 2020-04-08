@@ -1,0 +1,106 @@
+
+//Items
+item.ruby.name=Ruby
+item.charged_ruby.name=Charged Ruby
+
+
+item.ns_gem.name=Night Shade Gem
+item.ns_artifact.name =Night Shade Artifact
+item.charged_ns_artifact.name =Charged Night Shade Artifact
+
+item.obsidian_ingot.name=Obsidian Ingot
+
+item.dragon_shell.name=Dragon Shell
+
+//Blocks
+tile.ruby_block.name=Block of Ruby
+tile.ns_block.name=Night Shade Block
+tile.charged_ruby_block.name=Charged Ruby Block
+tile.ruby_ore.name=Ruby Ore
+
+tile.gravity_ore.name=Gravity Ore
+
+//Exploding Trap
+item.exploding_trap_powder.name=Exploding Trap Powder
+tile.exploding_trap.name=Exploding Trap
+tile.mega_exploding_trap.name=Mega Exploding Trap
+
+//Tools
+
+//Higgs Staff
+item.higgs_staff.name=Higgs Staff
+
+//Ruby
+item.ruby_sword.name=Ruby Sword
+item.ruby_shovel.name=Ruby Shovel
+item.ruby_pickaxe.name=Ruby Pickaxe
+item.ruby_axe.name=Ruby Axe
+item.ruby_hoe.name=Ruby Hoe
+
+//Night Shade
+item.ns_blade.name=Night Shade Blade
+
+//Parkour
+item.parkour_gripper.name=Parkour Gripper
+item.ultimate_parkour_gripper.name=Ultimate Parkour Gripper
+
+//Legendary Blade
+item.dead_blade.name=Dead Blade
+item.dead_blade_cast.name=Dead Blade Cast
+item.charged_dead_blade_cast.name=Charged Dead Blade Cast
+item.legendary_blade.name=Legendary Blade
+
+//Bone Blade
+item.sharp_bone.name=Sharp Bone
+item.magical_bone_cast.name=Magical Bone Cast
+item.charged_magical_bone_cast.name=Charged Magical Bone Cast
+item.bone_blade.name=Bone Blade
+
+//Creeper Staff
+item.magic_gunpowder.name=Magic Gunpowder
+item.magic_gunpowder_cell.name=Magic Gunpowder Cell
+item.charged_magic_gunpowder_cell.name=Charged Magic Gunpowder Cell
+item.creeper_staff.name=Creeper Staff
+
+//Blaze Staff
+item.blaze_staff.name=Blaze Staff
+
+//End Stone Blade
+item.dimensional_artifact.name=Dimensional Artifact
+item.dimensional_artifact_cast.name=Dimensional Artifact Cast
+item.lifeless_end_stone_blade.name=Lifeless End Stone Blade
+item.charged_lifeless_end_stone_blade.name=Charged Lifeless End Stone Blade
+item.end_stone_blade.name=End Stone Blade
+
+//Guns
+
+//Bullets
+item.bullet.name=Standard Issue Bullet
+
+//SMGs
+item.smg_mk_15.name=SMG Mk 15
+
+//Armor
+
+//Ruby
+item.ruby_helmet.name=Ruby Helmet
+item.ruby_chestplate.name=Ruby Chestplate
+item.ruby_leggings.name=Ruby Leggings
+item.ruby_boots.name=Ruby Boots
+
+//Solar
+item.solar_helm.name=Solar Helm
+item.solar_chestplate.name=Solar Chestplate
+item.solar_leggings.name=Solar Leggings
+item.solar_boots.name=Solar Boots
+
+//Night Shade
+item.ns_helm.name=Night Shade Helm
+item.ns_chestplate.name=Night Shade Chestplate
+item.ns_leggings.name=Night Shade Leggings
+item.ns_boots.name=Night Shade Boots
+
+//Food
+item.evil_apple.name=Evil Apple
+item.flying_apple.name=Flying Apple
+item.temporal_apple.name=Temporal Apple

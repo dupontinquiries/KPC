@@ -1,0 +1,48 @@
+{
+    "type": "minecraft:crafting_shaped",
+
+    "pattern": [
+        "WDW",
+        "GGG",
+        "WGW"
+    ],
+
+    "key": {
+        "G": {
+            "item": "kitchenparkourcombat:exploding_trap_powder"
+        },"D": {
+            "item": "minecraft:daylight_detector"
+        },
+        "W": [
+          {
+            "item": "minecraft:planks",
+            "data": 0
+          },
+          {
+            "item": "minecraft:planks",
+            "data": 1
+          },
+          {
+            "item": "minecraft:planks",
+            "data": 2
+          },
+          {
+            "item": "minecraft:planks",
+            "data": 3
+          },
+          {
+            "item": "minecraft:planks",
+            "data": 4
+          },
+          {
+            "item": "minecraft:planks",
+            "data": 5
+          }
+        ]
+    },
+
+    "result": {
+        "item": "kitchenparkourcombat:exploding_trap",
+        "count": 8
+    }
+}

@@ -1,0 +1,22 @@
+{
+    "type": "minecraft:crafting_shapeless",
+
+    "ingredients":
+    [
+
+    {
+      "item": "kitchenparkourcombat:ruby_sword"
+    },
+
+    {
+      "item": "minecraft:bone"
+    }
+
+    ],
+
+    "result":
+    {
+        "item": "kitchenparkourcombat:dead_blade",
+        "count": 1
+    }
+}

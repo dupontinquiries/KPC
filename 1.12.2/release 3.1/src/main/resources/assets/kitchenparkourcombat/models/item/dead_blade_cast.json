@@ -1,0 +1,6 @@
+{
+   "parent": "item/handheld",
+   "textures": {
+       "layer0": "kitchenparkourcombat:items/dead_blade_cast"
+   }
+}

@@ -1,0 +1,29 @@
+{
+    "type": "minecraft:crafting_shaped",
+
+    "pattern":
+    [
+        "   ",
+        " O ",
+        "D  "
+    ],
+
+    "key":
+    {
+        "O":
+        {
+            "item": "kitchenparkourcombat:ruby"
+        },
+
+        "D":
+        {
+            "item": "minecraft:blaze_rod"
+        }
+    },
+
+    "result":
+    {
+        "item": "kitchenparkourcombat:parkour_gripper",
+        "count": 1
+    }
+}

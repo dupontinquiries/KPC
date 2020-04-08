@@ -1,0 +1,18 @@
+{
+    "type": "minecraft:crafting_shapeless",
+
+    "ingredients":
+    [
+
+    {
+      "item": "kitchenparkourcombat:ns_block"
+    }
+
+    ],
+
+    "result":
+    {
+        "item": "kitchenparkourcombat:ns_gem",
+        "count": 5
+    }
+}

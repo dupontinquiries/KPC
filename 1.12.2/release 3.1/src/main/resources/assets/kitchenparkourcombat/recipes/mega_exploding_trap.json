@@ -1,0 +1,17 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "EE",
+        "EE"
+    ],
+    "key": {
+        "E": {
+            "item": "kitchenparkourcombat:exploding_trap"
+        }
+    },
+    "result":
+    {
+        "item": "kitchenparkourcombat:mega_exploding_trap",
+        "count": 1
+    }
+}

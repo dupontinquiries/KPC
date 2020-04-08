@@ -1,0 +1,18 @@
+{
+    "type": "minecraft:crafting_shapeless",
+
+    "ingredients":
+    [
+
+    {
+      "item": "kitchenparkourcombat:magic_gunpowder_cell"
+    }
+
+    ],
+
+    "result":
+    {
+        "item": "kitchenparkourcombat:charged_magic_gunpowder_cell",
+        "count": 1
+    }
+}

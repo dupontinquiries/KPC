@@ -1,0 +1,28 @@
+{
+    "type": "minecraft:crafting_shaped",
+
+    "pattern":
+    [
+        "RT",
+        "TR"
+    ],
+
+    "key":
+    {
+        "R":
+        {
+          "item": "minecraft:nether_wart"
+        },
+
+        "T":
+        {
+          "item": "minecraft:gunpowder"
+        }
+    },
+
+    "result":
+    {
+        "item": "kitchenparkourcombat:exploding_trap_powder",
+        "count": 1
+    }
+}

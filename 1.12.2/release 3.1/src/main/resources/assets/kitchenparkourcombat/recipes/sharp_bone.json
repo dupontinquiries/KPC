@@ -1,0 +1,22 @@
+{
+    "type": "minecraft:crafting_shapeless",
+
+    "ingredients":
+    [
+
+    {
+      "item": "minecraft:flint"
+    },
+
+    {
+      "item": "minecraft:bone"
+    }
+
+    ],
+
+    "result":
+    {
+        "item": "kitchenparkourcombat:sharp_bone",
+        "count": 1
+    }
+}

@@ -1,0 +1,29 @@
+{
+    "type": "minecraft:crafting_shaped",
+
+    "pattern":
+    [
+        "O  ",
+        " K ",
+        "  K"
+    ],
+
+    "key":
+    {
+        "K":
+        {
+          "item": "minecraft:blaze_rod"
+        },
+
+        "O":
+        {
+          "item": "minecraft:nether_star"
+        }
+    },
+
+    "result":
+    {
+        "item": "kitchenparkourcombat:blaze_staff",
+        "count": 1
+    }
+}

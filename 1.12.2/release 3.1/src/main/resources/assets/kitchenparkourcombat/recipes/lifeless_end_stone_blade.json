@@ -1,0 +1,21 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "EEE",
+        "EDE",
+        "EEE"
+    ],
+    "key": {
+        "E": {
+            "item": "minecraft:obsidian"
+        },
+        "D": {
+            "item": "kitchenparkourcombat:dimensional_artifact_cast"
+        }
+    },
+    "result":
+    {
+        "item": "kitchenparkourcombat:lifeless_end_stone_blade",
+        "count": 1
+    }
+}

@@ -1,0 +1,29 @@
+{
+    "type": "minecraft:crafting_shaped",
+
+    "pattern":
+    [
+        "OOO",
+        "OKO",
+        "OOO"
+    ],
+
+    "key":
+    {
+        "K":
+        {
+          "item": "kitchenparkourcombat:sharp_bone"
+        },
+
+        "O":
+        {
+          "item": "kitchenparkourcombat:ruby"
+        }
+    },
+
+    "result":
+    {
+        "item": "kitchenparkourcombat:magical_bone_cast",
+        "count": 1
+    }
+}

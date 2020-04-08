@@ -1,0 +1,16 @@
+[
+{
+  "modid": "kitchenparkourcombat",
+  "name": "Kitchen Parkour & Combat Mod",
+  "description": "Adds movement & combat items to your gameplay.",
+  "version": "3.1",
+  "mcversion": "1.12.2",
+  "url": "https://github.com/dupontinquiries/Parkour-and-Combat-Mod-Minecraft",
+  "updateUrl": "https://github.com/dupontinquiries/Parkour-and-Combat-Mod-Minecraft",
+  "authorList": ["The Kitchen"],
+  "credits": "The Kitchen, Minecraft Forge",
+  "logoFile": "https://raw.githubusercontent.com/dupontinquiries/Parkour-and-Combat-Mod-Minecraft/master/parkourcombatmod_iconsmall.jpg",
+  "screenshots": [https://raw.githubusercontent.com/dupontinquiries/Parkour-and-Combat-Mod-Minecraft/master/1.7.10/release%201.0/images/2020-03-21_23.14.12.png],
+  "dependencies": []
+}
+]

@@ -1,0 +1,21 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "EEE",
+        "EDE",
+        "EEE"
+    ],
+    "key": {
+        "E": {
+            "item": "kitchenparkourcombat:ruby"
+        },
+        "D": {
+            "item": "kitchenparkourcombat:exploding_trap_powder"
+        }
+    },
+    "result":
+    {
+        "item": "kitchenparkourcombat:magic_gunpowder",
+        "count": 1
+    }
+}

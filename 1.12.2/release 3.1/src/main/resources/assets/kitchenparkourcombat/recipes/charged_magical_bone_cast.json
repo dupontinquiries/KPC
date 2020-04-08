@@ -1,0 +1,18 @@
+{
+    "type": "minecraft:crafting_shapeless",
+
+    "ingredients":
+    [
+
+    {
+      "item": "kitchenparkourcombat:magical_bone_cast"
+    }
+
+    ],
+
+    "result":
+    {
+        "item": "kitchenparkourcombat:charged_magical_bone_cast",
+        "count": 1
+    }
+}

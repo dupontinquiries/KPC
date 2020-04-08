@@ -1,0 +1,26 @@
+{
+    "type": "minecraft:crafting_shapeless",
+
+    "ingredients":
+    [
+
+    {
+      "item": "minecraft:clock"
+    },
+
+    {
+      "item": "kitchenparkourcombat:charged_ruby"
+    },
+
+    {
+      "item": "minecraft:apple"
+    }
+
+    ],
+
+    "result":
+    {
+        "item": "kitchenparkourcombat:temporal_apple",
+        "count": 1
+    }
+}

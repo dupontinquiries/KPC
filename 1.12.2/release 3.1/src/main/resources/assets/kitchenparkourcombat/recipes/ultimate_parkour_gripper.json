@@ -1,0 +1,34 @@
+{
+    "type": "minecraft:crafting_shaped",
+
+    "pattern":
+    [
+        "  X",
+        " O ",
+        "D  "
+    ],
+
+    "key":
+    {
+        "O":
+        {
+            "item": "kitchenparkourcombat:charged_ruby"
+        },
+
+        "X":
+        {
+            "item": "minecraft:nether_star"
+        },
+
+        "D":
+        {
+            "item": "minecraft:blaze_rod"
+        }
+    },
+
+    "result":
+    {
+        "item": "kitchenparkourcombat:ultimate_parkour_gripper",
+        "count": 1
+    }
+}

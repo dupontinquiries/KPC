@@ -1,0 +1,18 @@
+{
+    "type": "minecraft:crafting_shapeless",
+
+    "ingredients":
+    [
+
+    {
+      "item": "kitchenparkourcombat:lifeless_end_stone_blade"
+    }
+
+    ],
+
+    "result":
+    {
+        "item": "kitchenparkourcombat:charged_lifeless_end_stone_blade",
+        "count": 1
+    }
+}

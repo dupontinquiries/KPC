@@ -1,0 +1,21 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "EEE",
+        "EDE",
+        "EEE"
+    ],
+    "key": {
+        "E": {
+            "item": "minecraft:obsidian"
+        },
+        "D": {
+            "item": "kitchenparkourcombat:magic_gunpowder"
+        }
+    },
+    "result":
+    {
+        "item": "kitchenparkourcombat:magic_gunpowder_cell",
+        "count": 1
+    }
+}

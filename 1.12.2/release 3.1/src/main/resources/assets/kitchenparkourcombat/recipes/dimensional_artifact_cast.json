@@ -1,0 +1,21 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "EEE",
+        "EDE",
+        "EEE"
+    ],
+    "key": {
+        "E": {
+            "item": "minecraft:end_stone"
+        },
+        "D": {
+            "item": "kitchenparkourcombat:dimensional_artifact"
+        }
+    },
+    "result":
+    {
+        "item": "kitchenparkourcombat:dimensional_artifact_cast",
+        "count": 1
+    }
+}

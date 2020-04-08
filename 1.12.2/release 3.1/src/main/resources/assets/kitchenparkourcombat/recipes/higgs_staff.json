@@ -1,0 +1,34 @@
+{
+    "type": "minecraft:crafting_shaped",
+
+    "pattern":
+    [
+        "GOG",
+        " D ",
+        " D "
+    ],
+
+    "key":
+    {
+        "O":
+        {
+            "item": "kitchenparkourcombat:charged_ns_artifact"
+        },
+
+        "G":
+        {
+            "item": "kitchenparkourcombat:charged_ruby"
+        },
+
+        "D":
+        {
+            "item": "minecraft:stick"
+        }
+    },
+
+    "result":
+    {
+        "item": "kitchenparkourcombat:higgs_staff",
+        "count": 1
+    }
+}

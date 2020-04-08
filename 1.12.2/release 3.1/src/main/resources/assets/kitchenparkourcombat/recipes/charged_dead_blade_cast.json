@@ -1,0 +1,18 @@
+{
+    "type": "minecraft:crafting_shapeless",
+
+    "ingredients":
+    [
+
+    {
+      "item": "kitchenparkourcombat:dead_blade_cast"
+    }
+
+    ],
+
+    "result":
+    {
+        "item": "kitchenparkourcombat:charged_dead_blade_cast",
+        "count": 1
+    }
+}

@@ -1,0 +1,22 @@
+{
+    "type": "minecraft:crafting_shapeless",
+
+    "ingredients":
+    [
+
+    {
+      "item": "minecraft:feather"
+    },
+
+    {
+      "item": "minecraft:apple"
+    }
+
+    ],
+
+    "result":
+    {
+        "item": "kitchenparkourcombat:flying_apple",
+        "count": 1
+    }
+}

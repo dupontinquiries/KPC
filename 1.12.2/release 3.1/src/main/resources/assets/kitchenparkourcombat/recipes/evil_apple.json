@@ -1,0 +1,22 @@
+{
+    "type": "minecraft:crafting_shapeless",
+
+    "ingredients":
+    [
+
+    {
+      "item": "minecraft:rotten_flesh"
+    },
+
+    {
+      "item": "minecraft:apple"
+    }
+
+    ],
+
+    "result":
+    {
+        "item": "kitchenparkourcombat:evil_apple",
+        "count": 1
+    }
+}
