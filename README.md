@@ -13,6 +13,10 @@ The two supported versions at this time are __1.7.10__ and __1.12.2__.  More ver
 ## Contributing
 Feel free to fork and make something awesome!  If you would like to add support for other versions of Minecraft, be sure to let me know via [email](mailto:dupontinquiries@gmail.com).
 
+## Discord Server
+
+Discord server coming soon...
+
 ## Screenshots
 
 ![https://raw.githubusercontent.com/dupontinquiries/Parkour-and-Combat-Mod-Minecraft/master/1.7.10/release%201.0/images/2020-03-21_23.14.12.png](https://raw.githubusercontent.com/dupontinquiries/Parkour-and-Combat-Mod-Minecraft/master/1.7.10/release 1.0/images/2020-03-21_23.14.12.png)
