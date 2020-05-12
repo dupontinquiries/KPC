@@ -4,7 +4,7 @@
 
 #### About KPC
 
-At its core, __KPC adds parkour and combat items to the game that enhance PvP and PvE. __ However, it does much more than that... __each game version has its own unique features__ that you can read about below.
+At its core, KPC adds parkour and combat items to the game that enhance PvP and PvE.  However, it does much more than that... each game version has its own unique features that you can read about below.
 
 #### 1.7.10
 
