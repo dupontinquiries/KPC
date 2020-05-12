@@ -19,4 +19,4 @@ Discord server coming soon...
 
 ## Screenshots
 
-![https://raw.githubusercontent.com/dupontinquiries/Parkour-and-Combat-Mod-Minecraft/master/1.7.10/release%201.0/images/2020-03-21_23.14.12.png](https://raw.githubusercontent.com/dupontinquiries/Parkour-and-Combat-Mod-Minecraft/master/1.7.10/release 1.0/images/2020-03-21_23.14.12.png)
+![https://github.com/dupontinquiries/KPC/blob/master/builds/1.7.10/release%201.0/images/2020-03-21_23.14.12.png?raw=true)
