@@ -1,4 +1,4 @@
-# ![](logo/v3/KPC LOGO v3.jpg)
+# <img src="logo/v3/KPC LOGO v3.jpg"/>
 
 ## What is KPC?
 
@@ -49,7 +49,7 @@ A Discord server is coming soon.  It will aid the testing and development that g
 
 #### KPC for Minecraft 1.7.10
 
-![](builds/1.7.10/release 1.0/images/2020-03-21_23.14.12.png)
+<img src="builds/1.7.10/release 1.0/images/2020-03-21_23.14.12.png"/>
 
 #### KPC for Minecraft 1.12.2
 
