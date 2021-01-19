@@ -16,7 +16,7 @@ This mod is __made for specific versions of Minecraft!__  It will not run on uns
 
 ## Versions
 
-KPC currently runs on four different versions pf Minecraft: __1.7.10, 1.12.2, 1.15.2, & 1.16.4.__  1.16.4 is the only supported versions at this time, but the 1.12.2 version is a great alternative as it was very popular among my mod testers.  __More versions will be listed if/when they become supported.__
+KPC currently runs on four different versions of Minecraft: __1.7.10, 1.12.2, 1.15.2, & 1.16.4.__  1.16.4 is the only supported versions at this time, but the 1.12.2 version is a great alternative as it was very popular among my mod testers.  __More versions will be listed if/when they become supported.__
 
 ## Contributing
 Feel free to fork and make something awesome!  The __mod sources__ can be found at the __GitHub repo linked above__ folder.  You can also send me an [email](mailto:dupontinquiries@gmail.com) to show me your work.
@@ -33,10 +33,39 @@ Some screenshots featuring a few of items.  Check out the KPC GitHub Repository 
 
 ![](https://github.com/dupontinquiries/KPC/blob/master/media/best%20KPC%201.16.4/a.png?raw=true)
 
+Each armor set has special properties.
+
 ![](https://github.com/dupontinquiries/KPC/blob/master/media/best%20KPC%201.16.4/b.png?raw=true)
+
+Find new ores & blocks in the overworld.
 
 ![](https://github.com/dupontinquiries/KPC/blob/master/media/best%20KPC%201.16.4/c.png?raw=true)
 
+Enhance combat with the Lava Wielder, the Parkour Gripper, and a Token of Valor.
+
 ![](https://github.com/dupontinquiries/KPC/blob/master/media/best%20KPC%201.16.4/d.png?raw=true)
 
+Some other items with cool abilities.
+
 ![](https://github.com/dupontinquiries/KPC/blob/master/media/best%20KPC%201.16.4/e.png?raw=true)
+
+Find a new ore in the nether.
+
+## Tutorial
+
+<img src="https://raw.githubusercontent.com/dupontinquiries/KPC/master/builds/1.16.4/source/src/main/resources/assets/kitchenparkour/textures/item/parkour_gripper.png" style="zoom:200%;" />
+
+The Magma Wielder can be activated when sneaking on the ground.  It creates a pool of lava.
+
+<img src="https://raw.githubusercontent.com/dupontinquiries/KPC/master/builds/1.16.4/source/src/main/resources/assets/kitchenparkour/textures/item/token_tank.png" style="zoom:50%;" />
+
+The Magma Wielder can be activated when sneaking on the ground.  It creates a pool of lava.
+
+<img src="https://raw.githubusercontent.com/dupontinquiries/KPC/master/builds/1.16.4/source/src/main/resources/assets/kitchenparkour/textures/item/ruby_pick.png" style="zoom:200%;" />
+
+The Magma Wielder can be activated when sneaking on the ground.  It creates a pool of lava.
+
+<img src="https://raw.githubusercontent.com/dupontinquiries/KPC/master/builds/1.16.4/source/src/main/resources/assets/kitchenparkour/textures/item/lava_wielder.png" style="zoom:200%;" />
+
+The Magma Wielder can be activated when sneaking on the ground.  It creates a pool of lava.
+
