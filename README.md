@@ -1,4 +1,4 @@
-# <img src="logo/v3/KPC LOGO v3.jpg"/>
+# <img src="logo/v3/KPC_LOGO_v3.jpg"/>
 
 ## What is KPC?
 
