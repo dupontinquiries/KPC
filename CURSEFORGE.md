@@ -69,3 +69,6 @@ The Ruby Pick has two modes, single block mode and multi block mode.
 
 The Lava Wielder can be activated when sneaking on the ground.  It creates a pool of lava.
 
+## Support
+
+You can support me by [streaming my music](https://open.spotify.com/artist/3UZDsnAmnpGlFGlFyikvIt?si=Xbl0YeeWTzul8ORxZi-ffw).
