@@ -29,15 +29,15 @@ If this mod gets popular I will setup a Discord server.
 
 #### KPC for Minecraft 1.16.4
 
-![](media\best KPC 1.16.4\a.png)
+![](media/best KPC 1.16.4/a.png)
 
-![](media\best KPC 1.16.4\b.png)
+![](media/best KPC 1.16.4/b.png)
 
-![](media\best KPC 1.16.4\c.png)
+![](media/best KPC 1.16.4/c.png)
 
-![](media\best KPC 1.16.4\d.png)
+![](media/best KPC 1.16.4/d.png)
 
-![](media\best KPC 1.16.4\e.png)
+![](media/best KPC 1.16.4/e.png)
 
 #### KPC for Minecraft 1.12.2
 
