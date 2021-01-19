@@ -23,7 +23,7 @@ Feel free to fork and make something awesome!  The __mod sources__ can be found 
 
 ## Discord Server
 
-If this mod gets popular I will setup a Discord server.
+Join the mod server [here](https://discord.gg/KNmkUtSh).
 
 ## Screenshots
 
@@ -53,19 +53,19 @@ Find a new ore in the nether.
 
 ## Tutorial
 
-<img src="https://raw.githubusercontent.com/dupontinquiries/KPC/master/builds/1.16.4/source/src/main/resources/assets/kitchenparkour/textures/item/parkour_gripper.png" style="zoom:100%;" />
+<img src="https://raw.githubusercontent.com/dupontinquiries/KPC/master/builds/1.16.4/source/src/main/resources/assets/kitchenparkour/textures/item_site/parkour_gripper.png" style="zoom:100%;" />
 
 The Parkour Gripper can be used to double jump and wall run.  It also makes your more capable of falling from high up.
 
-<img src="https://raw.githubusercontent.com/dupontinquiries/KPC/master/builds/1.16.4/source/src/main/resources/assets/kitchenparkour/textures/item/token_tank.png" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/dupontinquiries/KPC/master/builds/1.16.4/source/src/main/resources/assets/kitchenparkour/textures/item_site/token_tank.png" style="zoom:50%;" />
 
 The Token of Valor can be used to increase your max health.
 
-<img src="https://raw.githubusercontent.com/dupontinquiries/KPC/master/builds/1.16.4/source/src/main/resources/assets/kitchenparkour/textures/item/ruby_pick.png" style="zoom:100%;" />
+<img src="https://raw.githubusercontent.com/dupontinquiries/KPC/master/builds/1.16.4/source/src/main/resources/assets/kitchenparkour/textures/item_site/ruby_pick.png" style="zoom:100%;" />
 
 The Ruby Pick has two modes, single block mode and multi block mode.
 
-<img src="https://raw.githubusercontent.com/dupontinquiries/KPC/master/builds/1.16.4/source/src/main/resources/assets/kitchenparkour/textures/item/lava_wielder.png" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/dupontinquiries/KPC/master/builds/1.16.4/source/src/main/resources/assets/kitchenparkour/textures/item_site/lava_wielder.png" style="zoom:50%;" />
 
-The Magma Wielder can be activated when sneaking on the ground.  It creates a pool of lava.
+The Lava Wielder can be activated when sneaking on the ground.  It creates a pool of lava.
 
