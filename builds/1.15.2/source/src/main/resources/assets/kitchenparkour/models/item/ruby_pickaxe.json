@@ -1,0 +1,14 @@
+{
+    "parent": "item/handheld",
+    "textures": {
+        "layer0": "kitchenparkourcombat:item/ruby_pickaxe"
+    },
+    "overrides": [
+        {
+            "predicate": {
+                "megamine": 1.0
+            },
+            "model": "kitchenparkourcombat:item/ruby_pickaxe_megamine"
+        }
+    ]
+}

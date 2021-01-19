@@ -1,0 +1,25 @@
+{
+  "type": "kitchenparkour:kpc_crafting_shaped",
+  "pattern": [
+    " r ",
+    "fpf",
+    " c "
+],
+  "key": {
+    "r": {
+      "item": "kitchenparkour:charged_ruby_gem"
+    },
+    "f": {
+      "item": "minecraft:feather"
+    },
+    "p": {
+      "item": "kitchenparkour:parkour_gripper"
+    },
+    "c": {
+      "item": "kitchenparkour:charged_taydon_gem"
+    }
+  },
+  "result": {
+    "item": "kitchenparkour:gods_wings"
+  }
+}

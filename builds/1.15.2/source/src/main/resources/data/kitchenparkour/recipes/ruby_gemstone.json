@@ -1,0 +1,16 @@
+{
+  "type": "kitchenparkour:kpc_crafting_shaped",
+  "pattern": [
+    "RRR",
+    "RRR",
+    "RRR"
+  ],
+  "key": {
+    "R": {
+      "item": "kitchenparkour:ruby_powder"
+    }
+  },
+  "result": {
+    "item": "kitchenparkour:ruby_gem"
+  }
+}

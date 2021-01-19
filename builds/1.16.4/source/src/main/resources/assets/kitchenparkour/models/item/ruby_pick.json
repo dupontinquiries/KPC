@@ -1,0 +1,14 @@
+{
+	"parent": "item/handheld",
+	"textures": {
+		"layer0": "kitchenparkour:item/ruby_pick"
+	},
+	"overrides": [
+		{
+			"predicate": {
+				"charged": 1
+			},
+			"model": "kitchenparkour:item/ruby_pick_charged"
+		}
+	]
+}

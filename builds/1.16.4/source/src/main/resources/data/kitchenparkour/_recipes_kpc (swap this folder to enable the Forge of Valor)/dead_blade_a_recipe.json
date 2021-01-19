@@ -1,0 +1,14 @@
+{
+  "type": "kitchenparkour:kpc_crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:bone"
+    },
+    {
+      "item": "minecraft:stone_sword"
+    }
+  ],
+  "result": {
+    "item": "kitchenparkour:dead_blade_a"
+  }
+}

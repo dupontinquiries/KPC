@@ -1,0 +1,6 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "kitchenparkour:item/charged_taydon_gem"
+  }
+}

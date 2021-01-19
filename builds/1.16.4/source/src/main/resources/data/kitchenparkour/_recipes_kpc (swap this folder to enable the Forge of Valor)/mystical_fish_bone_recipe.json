@@ -1,0 +1,22 @@
+{
+  "type": "kitchenparkour:kpc_crafting_shaped",
+  "pattern": [
+    "RDR",
+    " S ",
+    " S "
+  ],
+  "key": {
+    "R": {
+      "item": "kitchenparkour:ruby_gem"
+    },
+    "D": {
+      "item": "minecraft:heart_of_the_sea"
+    },
+    "S": {
+      "item": "minecraft:bone"
+    }
+  },
+  "result": {
+    "item": "kitchenparkour:mystical_fish_bone"
+  }
+}

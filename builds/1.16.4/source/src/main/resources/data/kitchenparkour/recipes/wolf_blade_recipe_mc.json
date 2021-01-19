@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " e ",
+    "ebe",
+    " e "
+],
+  "key": {
+    "e": {
+      "item": "minecraft:emerald"
+    },
+    "b": {
+      "item": "kitchenparkour:uncharged_wolf_blade"
+    }
+  },
+  "result": {
+    "item": "kitchenparkour:wolf_blade"
+  }
+}

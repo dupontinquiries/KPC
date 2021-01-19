@@ -1,0 +1,92 @@
+{
+  "item.parkour_gripper_jump": {
+    "category": "item",
+    "subtitle": "item.parkour_gripper_jump.sub",
+    "sounds": [
+      {
+        "name": "kitchenparkour:item/parkour_gripper_jump",
+        "stream": true
+      }
+    ]
+  },
+  "item.parkour_gripper_ready": {
+    "category": "item",
+    "subtitle": "item.parkour_gripper_ready.sub",
+    "sounds": [
+      {
+        "name": "kitchenparkour:item/parkour_gripper_ready",
+        "stream": true
+      }
+    ]
+  },
+  "item.sword_attack": {
+    "category": "item",
+    "subtitle": "item.sword_attack.sub",
+    "sounds": [
+      {
+        "name": "kitchenparkour:item/sword_attack",
+        "stream": true
+      }
+    ]
+  },
+  "item.aqua_parkour_dash": {
+    "category": "item",
+    "subtitle": "item.aqua_parkour_dash.sub",
+    "sounds": [
+      {
+        "name": "kitchenparkour:item/aqua_parkour_dash",
+        "stream": true
+      }
+    ]
+  },
+  "block.kpc_table_craft": {
+    "category": "block",
+    "subtitle": "block.kpc_table_craft.sub",
+    "sounds": [
+      {
+        "name": "kitchenparkour:block/kpc_table_craft",
+        "stream": true
+      }
+    ]
+  },
+  "item.ew_lift": {
+    "category": "item",
+    "subtitle": "item.ew_lift.sub",
+    "sounds": [
+      {
+        "name": "kitchenparkour:item/ew_lift",
+        "stream": true
+      }
+    ]
+  },
+  "item.ew_windup": {
+    "category": "item",
+    "subtitle": "item.ew_windup.sub",
+    "sounds": [
+      {
+        "name": "kitchenparkour:item/ew_windup",
+        "stream": true
+      }
+    ]
+  },
+  "item.fireball": {
+    "category": "item",
+    "subtitle": "item.fireball.sub",
+    "sounds": [
+      {
+        "name": "kitchenparkour:item/fireball",
+        "stream": true
+      }
+    ]
+  },
+  "item.quest_complete": {
+    "category": "item",
+    "subtitle": "item.quest_complete.sub",
+    "sounds": [
+      {
+        "name": "kitchenparkour:item/quest_complete",
+        "stream": true
+      }
+    ]
+  }
+}

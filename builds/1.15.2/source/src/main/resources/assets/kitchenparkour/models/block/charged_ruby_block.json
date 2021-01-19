@@ -1,0 +1,6 @@
+{
+	"parent": "block/cube_all",
+	"textures": {
+		"all": "kitchenparkour:block/charged_ruby_block"
+	}
+}

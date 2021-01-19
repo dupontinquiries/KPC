@@ -1,0 +1,22 @@
+{
+  "type": "kitchenparkour:kpc_crafting_shaped",
+  "pattern": [
+    "dtd",
+    " x ",
+    " x "
+],
+  "key": {
+    "d": {
+      "item": "minecraft:diamond"
+    },
+    "t": {
+      "item": "kitchenparkour:token_scout"
+    },
+    "x": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "kitchenparkour:super_trident"
+  }
+}

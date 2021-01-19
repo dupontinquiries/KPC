@@ -1,0 +1,22 @@
+{
+  "type": "kitchenparkour:kpc_crafting_shaped",
+  "pattern": [
+    "RDR",
+    "SS ",
+    "SS "
+  ],
+  "key": {
+    "R": {
+      "item": "kitchenparkour:ruby_gem"
+    },
+    "D": {
+      "item": "minecraft:diamond"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "kitchenparkour:parkour_gripper"
+  }
+}

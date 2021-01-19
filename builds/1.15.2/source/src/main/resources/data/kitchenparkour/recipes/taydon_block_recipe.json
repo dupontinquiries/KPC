@@ -1,0 +1,16 @@
+{
+  "type": "kitchenparkour:kpc_crafting_shaped",
+  "pattern": [
+    "GGG",
+    "GGG",
+    "GGG"
+  ],
+  "key": {
+    "G": {
+      "item": "kitchenparkour:taydon_gem"
+    }
+  },
+  "result": {
+    "item": "kitchenparkour:taydon_block"
+  }
+}

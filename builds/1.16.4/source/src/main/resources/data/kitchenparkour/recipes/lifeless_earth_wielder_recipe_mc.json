@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ccc",
+    "cdc",
+    "ccc"
+],
+  "key": {
+    "c": {
+      "item": "kitchenparkour:charged_taydon_block"
+    },
+    "d": {
+      "item": "minecraft:grass_block"
+    }
+  },
+  "result": {
+    "item": "kitchenparkour:lifeless_earth_wielder"
+  }
+}

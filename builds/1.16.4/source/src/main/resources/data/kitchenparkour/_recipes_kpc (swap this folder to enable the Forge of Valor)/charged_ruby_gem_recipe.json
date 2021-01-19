@@ -1,0 +1,12 @@
+{
+  "type": "kitchenparkour:kpc_crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "kitchenparkour:charged_ruby_block"
+    }
+  ],
+  "result": {
+    "item": "kitchenparkour:charged_ruby_gem",
+    "count": 7
+  }
+}

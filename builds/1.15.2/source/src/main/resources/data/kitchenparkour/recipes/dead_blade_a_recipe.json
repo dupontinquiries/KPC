@@ -1,0 +1,19 @@
+{
+  "type": "kitchenparkour:kpc_crafting_shaped",
+  "pattern": [
+    " b ",
+    " s ",
+    "   "
+],
+  "key": {
+    "b": {
+      "item": "minecraft:bone"
+    },
+    "s": {
+      "item": "minecraft:stone_sword"
+    }
+  },
+  "result": {
+    "item": "kitchenparkour:dead_blade_a"
+  }
+}

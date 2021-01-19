@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "geg",
+    "geg",
+    "gsg"
+  ],
+  "key": {
+    "t": {
+      "item": "kitchenparkour:charged_taydon_gem"
+    },
+    "e": {
+      "item": "minecraft:end_stone"
+    },
+    "s": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "kitchenparkour:vex_blade"
+  }
+}

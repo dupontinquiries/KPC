@@ -1,0 +1,16 @@
+{
+  "type": "kitchenparkour:kpc_crafting_shaped",
+  "pattern": [
+    "aaa",
+    "aaa",
+    "aaa"
+],
+  "key": {
+    "a": {
+      "item": "kitchenparkour:charged_ruby_block"
+    }
+  },
+  "result": {
+    "item": "kitchenparkour:token_tank"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "type": "kitchenparkour:kpc_crafting_shaped",
+  "pattern": [
+    "ggg",
+    " s ",
+    " s "
+],
+  "key": {
+    "g": {
+      "item": "kitchenparkour:ruby_gem"
+    },
+    "s": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "kitchenparkour:unlit_spark"
+  }
+}

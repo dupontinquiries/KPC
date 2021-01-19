@@ -1,0 +1,19 @@
+{
+  "type": "kitchenparkour:kpc_crafting_shaped",
+  "pattern": [
+    "DDD",
+    "DPD",
+    "DDD"
+  ],
+  "key": {
+    "P": {
+      "item": "kitchenparkour:parkour_gripper"
+    },
+    "D": {
+      "item": "minecraft:diamond_block"
+    }
+  },
+  "result": {
+    "item": "kitchenparkour:hungry_stick"
+  }
+}

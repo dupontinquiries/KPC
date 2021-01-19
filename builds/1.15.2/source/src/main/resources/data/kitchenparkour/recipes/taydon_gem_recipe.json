@@ -1,0 +1,12 @@
+{
+  "type": "kitchenparkour:kpc_crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "kitchenparkour:taydon_block"
+    }
+  ],
+  "result": {
+    "item": "kitchenparkour:taydon_gem",
+    "count": 9
+  }
+}
