@@ -53,19 +53,19 @@ Find a new ore in the nether.
 
 ## Tutorial
 
-<img src="https://raw.githubusercontent.com/dupontinquiries/KPC/master/builds/1.16.4/source/src/main/resources/assets/kitchenparkour/textures/item/parkour_gripper.png" style="zoom:200%;" />
+<img src="https://raw.githubusercontent.com/dupontinquiries/KPC/master/builds/1.16.4/source/src/main/resources/assets/kitchenparkour/textures/item/parkour_gripper.png" style="zoom:100%;" />
 
-The Magma Wielder can be activated when sneaking on the ground.  It creates a pool of lava.
+The Parkour Gripper can be used to double jump and wall run.  It also makes your more capable of falling from high up.
 
 <img src="https://raw.githubusercontent.com/dupontinquiries/KPC/master/builds/1.16.4/source/src/main/resources/assets/kitchenparkour/textures/item/token_tank.png" style="zoom:50%;" />
 
-The Magma Wielder can be activated when sneaking on the ground.  It creates a pool of lava.
+The Token of Valor can be used to increase your max health.
 
-<img src="https://raw.githubusercontent.com/dupontinquiries/KPC/master/builds/1.16.4/source/src/main/resources/assets/kitchenparkour/textures/item/ruby_pick.png" style="zoom:200%;" />
+<img src="https://raw.githubusercontent.com/dupontinquiries/KPC/master/builds/1.16.4/source/src/main/resources/assets/kitchenparkour/textures/item/ruby_pick.png" style="zoom:100%;" />
 
-The Magma Wielder can be activated when sneaking on the ground.  It creates a pool of lava.
+The Ruby Pick has two modes, single block mode and multi block mode.
 
-<img src="https://raw.githubusercontent.com/dupontinquiries/KPC/master/builds/1.16.4/source/src/main/resources/assets/kitchenparkour/textures/item/lava_wielder.png" style="zoom:200%;" />
+<img src="https://raw.githubusercontent.com/dupontinquiries/KPC/master/builds/1.16.4/source/src/main/resources/assets/kitchenparkour/textures/item/lava_wielder.png" style="zoom:50%;" />
 
 The Magma Wielder can be activated when sneaking on the ground.  It creates a pool of lava.
 
