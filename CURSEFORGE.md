@@ -53,7 +53,7 @@ Find a new ore in the nether.
 
 ## Tutorial
 
-<img src="https://raw.githubusercontent.com/dupontinquiries/KPC/master/builds/1.16.4/source/src/main/resources/assets/kitchenparkour/textures/item_site/parkour_gripper.png" style="zoom:100%;" />
+<img src="https://raw.githubusercontent.com/dupontinquiries/KPC/master/builds/1.16.4/source/src/main/resources/assets/kitchenparkour/textures/item_site/parkour_gripper.png" style="zoom:200%;" />
 
 The Parkour Gripper can be used to double jump and wall run.  It also makes your more capable of falling from high up.
 
