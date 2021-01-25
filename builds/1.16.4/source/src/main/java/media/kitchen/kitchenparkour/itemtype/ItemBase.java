@@ -27,6 +27,7 @@ public class ItemBase extends Item {
     private void setup() {
         tabs = new ArrayList<ItemGroup>();
         addTab(Parkour.KPC_TAB);
+        addTab(ItemGroup.SEARCH);
     }
 
     // creative tabs

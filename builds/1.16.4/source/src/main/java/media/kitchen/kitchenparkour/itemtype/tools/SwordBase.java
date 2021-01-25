@@ -40,6 +40,8 @@ public class SwordBase extends SwordItem {
     private void setup() {
         tabs = new ArrayList<ItemGroup>();
         addTab(Parkour.KPC_TAB);
+        addTab(ItemGroup.COMBAT);
+        addTab(ItemGroup.SEARCH);
     }
 
     // creative tabs

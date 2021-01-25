@@ -1,10 +1,8 @@
 package media.kitchen.kitchenparkour.itemtype.tools.bending;
 
-import media.kitchen.kitchenparkour.Parkour;
 import media.kitchen.kitchenparkour.entity.LavaAOEEntity;
 import media.kitchen.kitchenparkour.entity.LavaAOESchorchedEarthEntity;
 import media.kitchen.kitchenparkour.itemtype.tools.SwordBase;
-import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -23,6 +21,7 @@ public class LavaWielder extends SwordBase {
         super(tier, attackDamageIn, attackSpeedIn, builderIn);
     }
 
+    @Override
     public boolean hitEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
         target.hurtTime = 0;
         return super.hitEntity(stack, target, attacker);
@@ -50,11 +49,11 @@ public class LavaWielder extends SwordBase {
                     break;
                 }
             }
+            double fac = 4;
+            double mx = playerIn.getLookVec().normalize().scale(fac).getX() + playerIn.getPosX();
+            double my = playerIn.getLookVec().normalize().scale(fac).getY() + playerIn.getPosY();
+            double mz = playerIn.getLookVec().normalize().scale(fac).getZ() + playerIn.getPosZ();
             if ( scorched ) {
-                double fac = 4;
-                double mx = playerIn.getLookVec().normalize().scale(fac).getX() + playerIn.getPosX();
-                double my = playerIn.getLookVec().normalize().scale(fac).getY() + playerIn.getPosY();
-                double mz = playerIn.getLookVec().normalize().scale(fac).getZ() + playerIn.getPosZ();
                 LavaAOESchorchedEarthEntity lava = new LavaAOESchorchedEarthEntity(worldIn, mx, my, mz);
                 lava.setRadius(4);
                 lava.addEffect(new EffectInstance(Effects.SLOWNESS, 45, 2));
@@ -62,10 +61,6 @@ public class LavaWielder extends SwordBase {
                 lava.setDuration(160);
                 worldIn.addEntity(lava);
             } else {
-                double fac = 4;
-                double mx = playerIn.getLookVec().normalize().scale(fac).getX() + playerIn.getPosX();
-                double my = playerIn.getLookVec().normalize().scale(fac).getY() + playerIn.getPosY();
-                double mz = playerIn.getLookVec().normalize().scale(fac).getZ() + playerIn.getPosZ();
                 LavaAOEEntity lava = new LavaAOEEntity(worldIn, mx, my, mz);
                 lava.setRadius(3);
                 lava.addEffect(new EffectInstance(Effects.SLOWNESS, 45, 1));
@@ -77,20 +72,4 @@ public class LavaWielder extends SwordBase {
         }
         return super.onItemRightClick(worldIn, playerIn, handIn);
     }
-
-    /*
-    private class Instruction {
-        private final BlockPos a, b;
-
-        public Instruction (BlockPos a, BlockPos b) {
-            this.a = a;
-            this.b = b;
-        }
-
-        void execute(World w) {
-            w.setBlockState(a, w.getBlockState(b));
-            w.setBlockState(b, Blocks.AIR.getDefaultState());
-        }
-    }
-    */
 }

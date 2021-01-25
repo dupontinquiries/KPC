@@ -3,7 +3,6 @@ package media.kitchen.kitchenparkour;
 import media.kitchen.kitchenparkour.gen.world.FeatureGen;
 import media.kitchen.kitchenparkour.blocktype.tileentity.ChargableTile;
 import media.kitchen.kitchenparkour.blocktype.tileentity.ChargableTileTaydon;
-import media.kitchen.kitchenparkour.crafting.kpctable.KPCContainer;
 import media.kitchen.kitchenparkour.enchantment.*;
 import media.kitchen.kitchenparkour.itemtype.ItemBase;
 import media.kitchen.kitchenparkour.itemtype.ItemBlockBase;
@@ -25,9 +24,6 @@ import media.kitchen.kitchenparkour.itemtype.tools.spawnblade.SpawnBlade;
 import media.kitchen.kitchenparkour.blocktype.BlockBase;
 import media.kitchen.kitchenparkour.blocktype.ChargableBlockSunlight;
 import media.kitchen.kitchenparkour.blocktype.SauberiteBlock;
-import media.kitchen.kitchenparkour.crafting.KPCShapedRecipe;
-import media.kitchen.kitchenparkour.crafting.KShapelessRecipe;
-import media.kitchen.kitchenparkour.crafting.kpctable.KPCTable;
 import media.kitchen.kitchenparkour.itemtype.parkour.AquaParkour;
 import media.kitchen.kitchenparkour.itemtype.quest.QuestHitChargeBase;
 import media.kitchen.kitchenparkour.itemtype.token.TokenBase;
@@ -152,14 +148,6 @@ public class Parkour
                     .sound(SoundType.METAL)
                     .harvestLevel(4).harvestTool(ToolType.PICKAXE), CHARGED_TAYDON_BLOCK.get().getDefaultState(), 0, 6));
 
-    // Crafting Table
-    public static final RegistryObject<Block> KPC_TABLE = BLOCKS.register("kpc_table",
-            () -> new KPCTable(Block.Properties.from(Blocks.OBSIDIAN)));
-
-    // Register recipe book
-
-    //public static final DeferredRegister<RecipeBookCategory> RBOOKS = DeferredRegister.create(ForgeRegistries., MOD_ID); //new DeferredRegister<>(ForgeRegistries.BLOCKS, Parkour.MOD_ID);
-
     // Sauberite Block
     public static final RegistryObject<Block> SAUBERITE_BLOCK = BLOCKS.register("sauberite_block",
             () -> new SauberiteBlock(Block.Properties.from(Blocks.BEDROCK)));
@@ -167,12 +155,6 @@ public class Parkour
     // Oberite Block
     public static final RegistryObject<Block> OBERITE_BLOCK = BLOCKS.register("oberite_block",
             () -> new BlockBase(Block.Properties.from(Blocks.OBSIDIAN)));
-
-    /*
-    public static final RegistryObject<Block> KPCT = BLOCKS.register("kpct",
-            () -> new KPCT(Block.Properties.create(Material.IRON, MaterialColor.OBSIDIAN)
-                    .hardnessAndResistance(5.0F, 16.0F).sound(SoundType.ANVIL)));
-     */
 
     // !Register Blocks
 
@@ -183,10 +165,6 @@ public class Parkour
     // Register Items
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MOD_ID); //new DeferredRegister<>(ForgeRegistries.ITEMS, Parkour.MOD_ID);
     // Custom Items
-
-    // Crafting
-    public static final RegistryObject<Item> KPC_TABLE_ITEM = ITEMS.register("kpc_table",
-            () -> new ItemBlockBase(KPC_TABLE.get()));
 
     // Ruby
     public static final RegistryObject<Item> RUBY_ORE_ITEM = ITEMS.register("ruby_ore",
@@ -492,37 +470,6 @@ public class Parkour
             () -> new SoundEvent(new ResourceLocation(MOD_ID, "item.quest_complete")));
     // !Custom Sounds
 
-    // Recipes
-
-    public static final DeferredRegister<IRecipeSerializer<?>> RECIPE_SERIALIZERS = DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, MOD_ID); //new DeferredRegister<>(ForgeRegistries.RECIPE_SERIALIZERS, Parkour.MOD_ID);
-
-    public static final RegistryObject<KPCShapedRecipe.Serializer> KPC_SHAPED = RECIPE_SERIALIZERS.register("kpc_crafting_shaped",
-            () -> new KPCShapedRecipe.Serializer());
-
-    public static final RegistryObject<KShapelessRecipe.Serializer> KPC_SHAPELESS = RECIPE_SERIALIZERS.register("kpc_crafting_shapeless",
-            () -> new KShapelessRecipe.Serializer());
-
-    public static final DeferredRegister<ContainerType<?>> CONTAINER_TYPES = DeferredRegister.create(ForgeRegistries.CONTAINERS, MOD_ID);
-
-    public static final RegistryObject<ContainerType<?>> KPC_CRAFTING_CONTAINER = CONTAINER_TYPES.register("kpc_crafting_container",
-            () -> IForgeContainerType.create((windowId, inv, extra) -> {
-                return new KPCContainer(windowId, inv);
-            }));
-
-    /*
-    ((windowId, inv, data) -> {
-                World world = inv.player.getEntityWorld();
-                // ((PacketBuffer) data).readBlockPos()
-                return new KPCContainer(windowId, inv, IWorldPosCallable.of(world, inv.player.getPosition()));
-            })
-    */
-
-    //public static final DeferredRegister<ContainerScreen<?>> CONTAINER_SCREENS = DeferredRegister.create(ForgeRegistries., MOD_ID);
-    //public static final ContainerType<KPCContainer> KPC_CRAFTING = CustomContainerType.register("kpc_crafting", KPCContainer::new);
-
-
-    // !Recipes
-
     //
 
     //
@@ -533,32 +480,32 @@ public class Parkour
 
     public static final RegistryObject<Enchantment> SUN_BLESSING = ENCHANTMENTS.register("sun_blessing",
             () -> new SunBlessing(Enchantment.Rarity.RARE,
-                    EnchantmentType.create("sun_blessing_filter", item -> item == SOLAR_LEGS.get() ),
+                    EnchantmentType.create(MOD_ID + "_sun_blessing_filter", item -> item == SOLAR_LEGS.get() ),
                     new EquipmentSlotType[] { EquipmentSlotType.LEGS } ));
 
     public static final RegistryObject<Enchantment> AQUA_BLESSING = ENCHANTMENTS.register("aqua_blessing",
             () -> new AquaBlessing(Enchantment.Rarity.VERY_RARE,
-                    EnchantmentType.create("aqua_blessing_filter", item -> item == BLUE_FINS.get()),
+                    EnchantmentType.create(MOD_ID + "_aqua_blessing_filter", item -> item == BLUE_FINS.get()),
                     new EquipmentSlotType[] { EquipmentSlotType.MAINHAND, EquipmentSlotType.OFFHAND } ));
 
     public static final RegistryObject<Enchantment> STEALTH = ENCHANTMENTS.register("stealth",
             () -> new Stealth(Enchantment.Rarity.RARE,
-                    EnchantmentType.create("stealth_filter", item -> item == TAYDON_BOOTS.get()),
+                    EnchantmentType.create(MOD_ID + "_stealth_filter", item -> item == TAYDON_BOOTS.get()),
                     new EquipmentSlotType[] { EquipmentSlotType.FEET } ));
 
     public static final RegistryObject<Enchantment> SUN_WALKER = ENCHANTMENTS.register("sun_walker",
             () -> new SunWalker(Enchantment.Rarity.VERY_RARE,
-                    EnchantmentType.create("sun_walker_filter", item -> item == SOLAR_BOOTS.get()),
+                    EnchantmentType.create(MOD_ID + "_sun_walker_filter", item -> item == SOLAR_BOOTS.get()),
                     new EquipmentSlotType[] { EquipmentSlotType.FEET } ));
 
     public static final RegistryObject<Enchantment> REAPER = ENCHANTMENTS.register("reaper",
             () -> new Reaper(Enchantment.Rarity.VERY_RARE,
-                    EnchantmentType.create("reaper_filter", item -> item == TAYDON_HELM.get()),
+                    EnchantmentType.create(MOD_ID + "_reaper_filter", item -> item == TAYDON_HELM.get()),
                     new EquipmentSlotType[] { EquipmentSlotType.HEAD } ));
 
     public static final RegistryObject<Enchantment> SCORCHED_EARTH = ENCHANTMENTS.register("scorched_earth",
             () -> new SchorchedEarthEnchantment(Enchantment.Rarity.VERY_RARE,
-                    EnchantmentType.create("scorched_earth_filter", item -> item == LAVA_WIELDER.get()),
+                    EnchantmentType.create(MOD_ID + "_scorched_earth_filter", item -> item == LAVA_WIELDER.get()),
                     new EquipmentSlotType[] { EquipmentSlotType.MAINHAND } ));
 
     // !Enchantments
@@ -593,13 +540,9 @@ public class Parkour
         // Sound Register
         SOUNDS.register(modEventBus);
 
-        RECIPE_SERIALIZERS.register(modEventBus);
-
         ENCHANTMENTS.register(modEventBus);
 
         TET.register(modEventBus);
-
-        CONTAINER_TYPES.register(modEventBus);
 
         MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGH, FeatureGen::addFeaturesToBiomes); // for ores
 
@@ -617,30 +560,7 @@ public class Parkour
     public static IStructurePieceType KPC_FORGE_PIECE = null;
 
     @ObjectHolder(MOD_ID + ":kpc_forge")
-    public static Structure<NoFeatureConfig> KPC_FORGE; // = new KPCForgeBlob(NoFeatureConfig::deserialize); // Structure<NoFeatureConfig>
-
-    // KPC Ruin
-
-    public static final ResourceLocation KPC_RUIN_A_LOC = new ResourceLocation(MOD_ID, "kpc_pylon");
-
-    public static IStructurePieceType KPC_RUIN_A_PIECE = null;
-
-    @ObjectHolder(MOD_ID + ":kpc_pylon")
-    public static Structure<NoFeatureConfig> KPC_RUIN_A;
-
-    public static final ResourceLocation KPC_RUIN_B_LOC = new ResourceLocation(MOD_ID, "kpc_spawner");
-
-    public static IStructurePieceType KPC_RUIN_B_PIECE = null;
-
-    @ObjectHolder(MOD_ID + ":kpc_spawner")
-    public static Structure<NoFeatureConfig> KPC_RUIN_B;
-
-    public static final ResourceLocation KPC_FA_LOC = new ResourceLocation(MOD_ID, "kpc_hallway");
-
-    public static IStructurePieceType KPC_FA_PIECE = null;
-
-    @ObjectHolder(MOD_ID + ":kpc_hallway")
-    public static Structure<NoFeatureConfig> KPC_FA;
+    public static Structure<NoFeatureConfig> KPC_FORGE;
 
     public void commonSetup(FMLCommonSetupEvent args) {
 

@@ -72,7 +72,7 @@ public class TokenBase extends ItemBase {
             player.getCapability(ParkourWarriorCapability.PARKOUR_WARRIOR_CAPABILITY).ifPresent(new NonNullConsumer<IParkourCapability>() {
                 @Override
                 public void accept(@Nonnull IParkourCapability token) {
-                    player.sendMessage(new StringTextComponent("Warrior Value: " +  token.getValue() ), Util.DUMMY_UUID); //StringTextComponent("Warrior Value: " + token.getValue()));
+                    player.sendMessage(new StringTextComponent("Warrior Value: " +  token.getValue() ), Util.DUMMY_UUID);
                     token.setValue(token.getValue() + 1);
                 }
             });
@@ -108,7 +108,6 @@ public class TokenBase extends ItemBase {
             Attribute a = entry.getKey();
             Double b = entry.getValue();
             player.getAttribute(a).applyPersistentModifier(new AttributeModifier("Token Modifier", b, AttributeModifier.Operation.ADDITION));
-            //player.getAttribute(a).applyModifier(new AttributeModifier("Token Modifier", b, AttributeModifier.Operation.ADDITION));
         }
 
         stack.shrink(1);

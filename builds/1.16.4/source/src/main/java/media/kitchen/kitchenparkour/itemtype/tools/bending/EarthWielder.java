@@ -38,7 +38,6 @@ public class EarthWielder extends SwordBase {
         if (worldIn.getBlockState(playerIn.getPosition().down()).isAir() || playerIn.getCooldownTracker().hasCooldown(this)) {
             return super.onItemRightClick(worldIn, playerIn, handIn);
         }
-        //ArrayList<Instruction> exec = new ArrayList<>();
         if ( playerIn.isSneaking() ) {
             ArrayList<Coord> coords = new ArrayList<>();
             playerIn.getCooldownTracker().setCooldown(this, 80); // 240
@@ -74,20 +73,4 @@ public class EarthWielder extends SwordBase {
         }
         return super.onItemRightClick(worldIn, playerIn, handIn);
     }
-
-    /*
-    private class Instruction {
-        private final BlockPos a, b;
-
-        public Instruction (BlockPos a, BlockPos b) {
-            this.a = a;
-            this.b = b;
-        }
-
-        void execute(World w) {
-            w.setBlockState(a, w.getBlockState(b));
-            w.setBlockState(b, Blocks.AIR.getDefaultState());
-        }
-    }
-    */
 }

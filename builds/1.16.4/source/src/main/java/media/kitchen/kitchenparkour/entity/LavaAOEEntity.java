@@ -2,7 +2,6 @@ package media.kitchen.kitchenparkour.entity;
 
 import media.kitchen.kitchenparkour.Parkour;
 import media.kitchen.kitchenparkour.rule.IBendingRule;
-import media.kitchen.kitchenparkour.serializers.BlockStateSerializer;
 import media.kitchen.kitchenparkour.util.Coord;
 import media.kitchen.kitchenparkour.util.Shapes;
 import net.minecraft.block.Block;
@@ -21,8 +20,6 @@ import net.minecraft.world.World;
 import java.util.*;
 
 public class LavaAOEEntity extends AreaEffectCloudEntity {
-
-    BlockStateSerializer serializer = new BlockStateSerializer();
 
     protected int radius = 2;
 

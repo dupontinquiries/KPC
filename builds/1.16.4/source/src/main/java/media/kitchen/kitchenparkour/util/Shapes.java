@@ -8,8 +8,6 @@ import java.util.Vector;
 
 public class Shapes {
 
-    // media.kitchen.kitchenparkour.gen a list of coords for a sphere
-
     // helper for sphere
     private static double lengthSq(int x, int y, int z) {
         return x * x + y * y + z * z;

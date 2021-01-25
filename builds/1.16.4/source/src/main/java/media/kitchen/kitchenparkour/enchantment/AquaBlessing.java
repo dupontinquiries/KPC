@@ -9,6 +9,8 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Effect;
+import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
 import net.minecraftforge.api.distmarker.Dist;
@@ -52,7 +54,7 @@ public class AquaBlessing extends Enchantment {
                 LivingEntity entity = le.getEntityLiving();
                 if (entity instanceof PlayerEntity) {
                     PlayerEntity player = (PlayerEntity) entity;
-                    if ( player.isInWater() ) {
+                    if ( ( player.getHeldItem(Hand.MAIN_HAND).getItem() == Parkour.BLUE_FINS.get() || player.getHeldItem(Hand.OFF_HAND).getItem() == Parkour.BLUE_FINS.get() ) && player.isInWater() ) {
                         event.setCanceled(true);
                         player.setAir(player.getMaxAir());
                     }

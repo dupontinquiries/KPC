@@ -21,6 +21,7 @@ public class ItemBlockBase extends BlockItem {
         tabs = new ArrayList<ItemGroup>();
         addTab(Parkour.KPC_TAB);
         addTab(ItemGroup.BUILDING_BLOCKS);
+        addTab(ItemGroup.SEARCH);
     }
 
     // creative tabs

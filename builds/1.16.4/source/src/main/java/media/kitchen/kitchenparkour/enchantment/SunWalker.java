@@ -3,6 +3,7 @@ package media.kitchen.kitchenparkour.enchantment;
 
 import media.kitchen.kitchenparkour.Parkour;
 import media.kitchen.kitchenparkour.util.Coord;
+import media.kitchen.kitchenparkour.util.PotionHelper;
 import media.kitchen.kitchenparkour.util.Shapes;
 import net.minecraft.block.Blocks;
 import net.minecraft.enchantment.Enchantment;
@@ -51,16 +52,30 @@ public class SunWalker extends Enchantment {
         return true;
     }
 
+    public static double randMotionMag(Random r) {
+        return (r.nextDouble() - .5 ) * 0.4;
+    }
+
+    public static double offset(Random r) {
+        return (r.nextDouble() - .5 ) * 1.2;
+    }
+
     @Mod.EventBusSubscriber(modid = Parkour.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
     public static class HasSunWalker {
 
         @SubscribeEvent
         @OnlyIn(Dist.CLIENT)
         public static void doStuff(Event event) {
-            if ( event instanceof LivingDamageEvent) {
-                event.setCanceled(true);
-                LivingDamageEvent le = (LivingDamageEvent) event;
-                applyPotion(le.getEntityLiving(), Effects.FIRE_RESISTANCE, 45, 1);
+            if ( event instanceof LivingDamageEvent ) {
+                LivingEntity le = ((LivingDamageEvent) event).getEntityLiving();
+                if ( le instanceof PlayerEntity ) {
+                    PlayerEntity p = (PlayerEntity) le;
+                    ItemStack s = p.getItemStackFromSlot(EquipmentSlotType.FEET);
+                    if ( EnchantmentHelper.getEnchantments(s).containsKey(Parkour.SUN_WALKER.getId()) ) {
+                        event.setCanceled(true);
+                        PotionHelper.applyPotion(p, Effects.FIRE_RESISTANCE, 45, 1);
+                    }
+                }
             }
             if ( event instanceof LivingEvent.LivingUpdateEvent) {
                 LivingEvent.LivingUpdateEvent le = (LivingEvent.LivingUpdateEvent) event;
@@ -69,13 +84,13 @@ public class SunWalker extends Enchantment {
                     PlayerEntity player = (PlayerEntity) entity;
                     if ( player.getItemStackFromSlot(EquipmentSlotType.FEET).getItem() == Parkour.SOLAR_BOOTS.get() ) {
                         if ( ( player.isInLava() || player.isBurning() ) ) {
-                            applyPotion(player, Effects.FIRE_RESISTANCE, 45, 1);
+                            PotionHelper.applyPotion(player, Effects.FIRE_RESISTANCE, 45, 1);
                             if ( player.ticksExisted % 10 == 0 ) {
                                 if ( player.world.getBlockState(player.getPosition()) == Blocks.SOUL_FIRE.getDefaultState() ) {
                                     player.world.setBlockState(player.getPosition(), Blocks.FIRE.getDefaultState());
                                 }
-                                applyPotion(player, Effects.RESISTANCE, 45, 1);
-                                applyPotion(player, Effects.STRENGTH, 45, 1);
+                                PotionHelper.applyPotion(player, Effects.RESISTANCE, 45, 1);
+                                PotionHelper.applyPotion(player, Effects.STRENGTH, 45, 1);
                             }
                             if ( player.ticksExisted % 10 == 0 ) {
                                 if ( player.world.rand.nextFloat() < .6 ) {
@@ -91,7 +106,7 @@ public class SunWalker extends Enchantment {
                                 }
                             }
                             if ( player.ticksExisted % 4 == 0 && player.isSneaking() ) {
-                                applyPotion(player, Effects.INVISIBILITY, 90, 1);
+                                PotionHelper.applyPotion(player, Effects.INVISIBILITY, 90, 1);
                                 for ( Coord c : Shapes.makeSphere(player.world, player.getPosition(), 3, true) ) {
                                     if ( player.world.rand.nextFloat() < .8 && !player.world.getBlockState(new BlockPos(c.getX(), c.getY(), c.getZ())).isSolid() ) {
                                         for ( char a = 0; a < player.world.rand.nextInt(36); ++a ) {
@@ -104,22 +119,7 @@ public class SunWalker extends Enchantment {
                         }
                     }
                 }
-            }
-        }
 
-        private static double randMotionMag(Random r) {
-            return (r.nextDouble() - .5 ) * 0.4;
-        }
-
-        private static double offset(Random r) {
-            return (r.nextDouble() - .5 ) * 1.2;
-        }
-
-        private static void applyPotion(LivingEntity le, Effect effect, int d, int a) {
-            boolean flag = !le.isPotionActive(effect) ||
-                    ( le.isPotionActive(effect) && le.getActivePotionEffect(effect).getDuration() < 50 );
-            if ( flag ) {
-                le.addPotionEffect(new EffectInstance(effect, d, a));
             }
         }
 

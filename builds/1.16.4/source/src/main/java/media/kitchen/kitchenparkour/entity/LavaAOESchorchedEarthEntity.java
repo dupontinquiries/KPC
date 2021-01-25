@@ -2,7 +2,6 @@ package media.kitchen.kitchenparkour.entity;
 
 import media.kitchen.kitchenparkour.Parkour;
 import media.kitchen.kitchenparkour.rule.IBendingRule;
-import media.kitchen.kitchenparkour.serializers.BlockStateSerializer;
 import media.kitchen.kitchenparkour.util.Coord;
 import media.kitchen.kitchenparkour.util.Shapes;
 import net.minecraft.block.Block;
@@ -20,8 +19,6 @@ import net.minecraft.world.World;
 import java.util.Vector;
 
 public class LavaAOESchorchedEarthEntity extends AreaEffectCloudEntity {
-
-    BlockStateSerializer serializer = new BlockStateSerializer();
 
     protected int radius = 3;
 
@@ -49,8 +46,7 @@ public class LavaAOESchorchedEarthEntity extends AreaEffectCloudEntity {
                 Coord c = sphere.get(i);
                 BlockState state = this.world.getBlockState(c.getPosition());
                 if ( IBendingRule.EARTH_BENDING_RULE.criteriaMet(state) ) {
-                    //name += c.getX() + " " + c.getY() + " " + c.getZ() + " " + state.getBlock().getRegistryName() + ",";
-                    name += i + " " + state.getBlock().getRegistryName() + ",";
+                    name += i + ",";
                     this.world.setBlockState(c.getPosition(), Blocks.LAVA.getDefaultState());
                 }
             }
@@ -63,10 +59,7 @@ public class LavaAOESchorchedEarthEntity extends AreaEffectCloudEntity {
             String name = this.getCustomName().getString();
             String[] sublets = name.split(",");
             for ( String s : sublets ) {
-                String[] parts = s.split(" ");
-                int index = Integer.parseInt(parts[0]);
-                Block block = Registry.BLOCK.getOrDefault(new ResourceLocation(parts[1]));
-                BlockState blockstate = block.getDefaultState();
+                int index = Integer.parseInt(s);
                 world.setBlockState(sphere.get(index).getPosition(), Blocks.OBSIDIAN.getDefaultState());
             }
             this.world.playSound(null, this.getPosition(), SoundEvents.BLOCK_LAVA_EXTINGUISH, SoundCategory.AMBIENT, 1.5F, 1F);

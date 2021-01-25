@@ -1,5 +1,6 @@
 package media.kitchen.kitchenparkour;
 
+import media.kitchen.kitchenparkour.itemtype.token.capabilities.ParkourAlmightyCapability;
 import media.kitchen.kitchenparkour.itemtype.token.capabilities.ParkourScoutCapability;
 import media.kitchen.kitchenparkour.itemtype.token.capabilities.ParkourTankCapability;
 import media.kitchen.kitchenparkour.itemtype.token.capabilities.ParkourWarriorCapability;
@@ -45,6 +46,7 @@ public class ModBusEvents {
             event.addCapability(new ResourceLocation(Parkour.MOD_ID, TokenType.WARRIOR.getId() + "_cap"), new ParkourWarriorCapability());
             event.addCapability(new ResourceLocation(Parkour.MOD_ID, TokenType.TANK.getId() + "_cap"), new ParkourTankCapability());
             event.addCapability(new ResourceLocation(Parkour.MOD_ID, TokenType.SCOUT.getId() + "_cap"), new ParkourScoutCapability());
+            event.addCapability(new ResourceLocation(Parkour.MOD_ID, TokenType.ALMIGHTY.getId() + "_cap"), new ParkourAlmightyCapability());
         }
     }
 
@@ -53,12 +55,13 @@ public class ModBusEvents {
         ParkourWarriorCapability.register();
         ParkourTankCapability.register();
         ParkourScoutCapability.register();
-
+        ParkourAlmightyCapability.register();
     }
 
     // !capabilities
 
     // mob events
+    /*
     @SubscribeEvent
     public void entityJoinWorldEvent(EntityJoinWorldEvent e) {
         System.out.println("detected spawn");
@@ -71,6 +74,7 @@ public class ModBusEvents {
             }
         }
     }
+    */
 
     // data model/texture media.kitchen.kitchenparkour.gen
     @SubscribeEvent
