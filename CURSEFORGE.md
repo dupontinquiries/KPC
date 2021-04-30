@@ -1,5 +1,9 @@
 # ![](https://raw.githubusercontent.com/dupontinquiries/KPC/master/logo/v3/KPC_LOGO_v3.jpg)
 
+## Discord Server
+
+Join the mod server [(click here)](https://discord.gg/KNmkUtSh).
+
 ## What is KPC?
 
 #### About KPC
@@ -18,13 +22,6 @@ This mod is __made for specific versions of Minecraft!__  It will not run on uns
 
 KPC currently runs on four different versions of Minecraft: __1.7.10, 1.12.2, 1.15.2, & 1.16.4.__  1.16.4 is the only supported versions at this time, but the 1.12.2 version is a great alternative as it was very popular among my mod testers.  __More versions will be listed if/when they become supported.__
 
-## Contributing
-Feel free to fork and make something awesome!  The __mod sources__ can be found at the __GitHub repo linked above__ folder.  You can also send me an [email](mailto:dupontinquiries@gmail.com) to show me your work.
-
-## Discord Server
-
-Join the mod server [(click here)](https://discord.gg/KNmkUtSh).
-
 ## Screenshots
 
 #### KPC for Minecraft 1.16.4
@@ -34,10 +31,6 @@ Some screenshots featuring a few of items.  Check out the KPC GitHub Repository 
 ![](https://github.com/dupontinquiries/KPC/blob/master/media/best%20KPC%201.16.4/a.png?raw=true)
 
 Each armor set has special properties.
-
-![](https://github.com/dupontinquiries/KPC/blob/master/media/best%20KPC%201.16.4/b.png?raw=true)
-
-Find new ores & blocks in the overworld.
 
 ![](https://github.com/dupontinquiries/KPC/blob/master/media/best%20KPC%201.16.4/c.png?raw=true)
 
@@ -53,22 +46,29 @@ Find a new ore in the nether.
 
 ## Tutorial
 
-![](https://raw.githubusercontent.com/dupontinquiries/KPC/master/builds/1.16.4/source/src/main/resources/assets/kitchenparkour/textures/item_site/parkour_gripper.png)
+### Parkour Grippers
 
-The Parkour Gripper can be used to double jump and wall run.  It also makes your more capable of falling from high up.
+- The Parkour Gripper can be used to double jump and wall run.  It also makes your more capable of falling from high up.
 
-![](https://raw.githubusercontent.com/dupontinquiries/KPC/master/builds/1.16.4/source/src/main/resources/assets/kitchenparkour/textures/item_site/token_tank.png)
+### Tokens
 
-The Token of Valor can be used to increase your max health.
+There are four token types:
 
-![](https://raw.githubusercontent.com/dupontinquiries/KPC/master/builds/1.16.4/source/src/main/resources/assets/kitchenparkour/textures/item_site/ruby_pick.png)
+- The Token of Valor can be used to increase your max health
+- The Token of Prowess can be used to increase your damage output
+- The Token of Elegance can be used to increase your movement speed
+- The Token of the Almighty can be used to increase all your stats without any tradeoffs
 
-The Ruby Pick has two modes, single block mode and multi block mode.
+### Tools
 
-![](https://raw.githubusercontent.com/dupontinquiries/KPC/master/builds/1.16.4/source/src/main/resources/assets/kitchenparkour/textures/item_site/lava_wielder.png)
+- The Ruby Pick has two modes, single block mode and multi block mode.
 
-The Lava Wielder can be activated when sneaking on the ground.  It creates a pool of lava.
+### The Legendary Arsenal
 
-## Support
+- The Lava Wielder can be activated when sneaking on the ground.  It creates a pool of lava.
 
-You can support me by [streaming my music](https://open.spotify.com/artist/3UZDsnAmnpGlFGlFyikvIt?si=Xbl0YeeWTzul8ORxZi-ffw).
+- 
+
+## Contributing
+
+Feel free to fork and make something awesome!  The __mod sources__ can be found at the __GitHub repo linked above__ folder.  You can also send me an [email](mailto:dupontinquiries@gmail.com) to show me your work.
